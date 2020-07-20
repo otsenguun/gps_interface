@@ -1,0 +1,81 @@
+@extends('layouts.app')
+
+@section('content')
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Contrack</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Device</a></li>
+                            <li class="active">Lists</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <div class="content">
+
+ 	 <div class="row">
+
+        <div class="col-md-12">
+                
+                 <div class="card">
+                            <div class="card-header">
+                                <strong><U>Show</U></strong> Device
+                            </div>
+                            <div class="card-body card-block">
+                                <form action="{{url('showcontracks')}}" method="get" class="form-inline">
+                                    <div class="form-group">
+                                        <label for="exampleInputName2" class="pr-1  form-control-label">Start date</label>
+                                        <input type="text" id="exampleInputName2" placeholder="Search here" class="form-control" name="s" value="{{isset($start_date) ? $end_date : '' }}">
+
+                                        <label for="exampleInputName" class="pr-1  form-control-label">End date</label>
+                                        <input type="text" id="exampleInputName" placeholder="Search here" class="form-control" name="s" value="{{isset($end_date) ? $end_date : '' }}">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Search
+                                </button>
+                            </div>
+                        </div>
+
+                 <div class="card">
+                            <div class="card-header">
+                                <strong><U>Show</U></strong> Device
+                            </div>
+                            <div class="card-body card-block">
+                                 <div class="table-stats order-table ov-h">
+                        
+                            </div> <!-- /.table-stats -->
+
+
+                            </div>
+                            <div class="card-footer">
+
+
+                            </div>
+                        </div>
+
+        </div>
+
+    </div>
+
+ </div>
+
+
+@endsection
