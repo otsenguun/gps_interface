@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Device;
+use App\Data;
 class DeviceController extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class DeviceController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
 
-        $devices = Device::paginate(50);
+        $devices = Data::paginate(50);
 
         return view('pages.device.list',compact('devices','start_date','end_date'));
     }

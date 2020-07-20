@@ -18,6 +18,7 @@ class CreateDataTable extends Migration
             $table->Longtext('data')->nullable();
             $table->string('imei',15)->nullable();
             $table->string('vehiclestatus',8)->default(0);
+ 	    $table->dateTime('datetime')->nullable();
             $table->string('batvoltage',2)->default(0);
             $table->string('supvoltage',2)->default(0);
             $table->string('tempa',4)->default(0);

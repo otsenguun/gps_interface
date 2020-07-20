@@ -74,9 +74,10 @@
                                                 <tr>
                                                     <td class="serial">{{$key+1 }}</td>
                                                     <td>  <span class="name">{{$device->vehiclestatus}}</span> </td>
-                                                    <td>  <span class="name">{{$device->email}}</span> </td>
+						<td></td>
+                                                    <td>  <span class="name">{{$device->imei}}</span> </td>
                                                     <td> <span class="product">{{$device->lat}}</span> </td>
-                                                    <td><span class="count">{{$device->long}}</span></td>
+                                                    <td><span class="name">{{$device->lng}}</span></td>
                                                     <td>
                                                         <span class="name">{{$device->datetime}}</span>
                                                     </td>
