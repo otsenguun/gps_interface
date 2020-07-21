@@ -8,7 +8,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Contrack</h1>
+                        <h1>Device</h1>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Contrack</a></li>
+                            <li><a href="#">Device</a></li>
                             <li class="active">Lists</li>
                         </ol>
                     </div>
@@ -34,7 +34,7 @@
                 
                  <div class="card">
                             <div class="card-header">
-                                <strong><U>Search</U></strong> Contrack
+                                <strong><U>Search</U></strong> Device
                             </div>
                             <div class="card-body card-block">
                                 <form action="{{url('showcontracks')}}" method="get" class="form-inline">
@@ -52,7 +52,7 @@
 
                  <div class="card">
                             <div class="card-header">
-                                <strong><U>List</U></strong> Contrack
+                                <strong><U>List</U></strong> Data
                             </div>
                             <div class="card-body card-block">
                                  <div class="table-stats order-table ov-h">
@@ -94,6 +94,7 @@
                             </div>
                             <div class="card-footer">
 
+                            {{ $devices->links() }}
 
                             </div>
                         </div>

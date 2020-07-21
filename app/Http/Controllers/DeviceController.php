@@ -16,7 +16,7 @@ class DeviceController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
 
-        $devices = Data::paginate(50);
+        $devices = Data::orderBy('id','desc')->paginate(100);
 
         return view('pages.device.list',compact('devices','start_date','end_date'));
     }
