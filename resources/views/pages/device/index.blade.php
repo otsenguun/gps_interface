@@ -147,14 +147,14 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                        
+                                {{ $datas->links() }}
                                 </div> <!-- /.table-stats -->
 
 
                             </div>
                             <div class="card-footer">
 
-                            {{ $datas->links() }}
+                           
 
                             </div>
                         </div>
