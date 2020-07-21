@@ -125,9 +125,6 @@
                                     <thead>
                                         <tr>
                                             <th class="serial">#</th>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Emei</th>
                                             <th>Lat</th>
                                             <th>Lng</th>
                                             <th>GPS date</th>
@@ -138,9 +135,6 @@
                                         @foreach($datas as $key => $data)
                                         <tr>
                                             <td class="serial">{{$key+1 }}</td>
-                                            <td>  <span class="name">{{$data->vehiclestatus}}</span> </td>
-                                            <td>  </td>
-                                            <td>  <span class="name">{{$data->imei}}</span> </td>
                                             <td> <span class="product">{{$data->lat}}</span> </td>
                                             <td><span class="name">{{$data->lng}}</span></td>
                                             <td>
