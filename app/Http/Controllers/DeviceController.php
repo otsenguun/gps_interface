@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Data;
+use App\Device;
 class DeviceController extends Controller
 {
     /**
@@ -15,10 +16,11 @@ class DeviceController extends Controller
     {
         $start_date = $request->start_date;
         $end_date = $request->end_date;
+        $s = $request->s;
 
-        $devices = Data::orderBy('id','desc')->paginate(100);
+        $devices = Device::orderBy('id','desc')->search($s)->paginate(100);
 
-        return view('pages.device.list',compact('devices','start_date','end_date'));
+        return view('pages.device.list',compact('devices','start_date','end_date','s'));
     }
 
     /**
@@ -28,7 +30,7 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.device.create');
     }
 
     /**
@@ -39,7 +41,11 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $device = new Device;
+        $device->name = $request->name;
+        $device->imei = $request->imei;
+        $device->save();
+        return redirect()->route('Device.index');
     }
 
     /**
@@ -50,7 +56,10 @@ class DeviceController extends Controller
      */
     public function show($id)
     {
-        //
+        $device = Device::find($id);
+        $datas = Data::where('imei',$device->imei)->paginate(100);
+
+        return view('pages.device.index',compact('datas','device'));
     }
 
     /**
@@ -61,7 +70,10 @@ class DeviceController extends Controller
      */
     public function edit($id)
     {
-        //
+    
+       $device = Device::find($id);
+       return view('pages.device.edit',compact('device'));
+    
     }
 
     /**
@@ -73,7 +85,13 @@ class DeviceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $device = Device::find($id);
+        $device->name = $request->name;
+        $device->imei = $request->imei;
+        $device->save();
+
+        return redirect()->route('Device.index');
+        // return redirect()->back();
     }
 
     /**
@@ -84,6 +102,8 @@ class DeviceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $device = Device::find($id);
+        $device->delete();
+        return redirect()->route('Device.index');
     }
 }

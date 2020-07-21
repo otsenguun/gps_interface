@@ -22,6 +22,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/', 'DeviceController@index')->name('devices');
 
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	Route::resource('Device','DeviceController');
+	Route::resource('User','UserController');
 });
 
 

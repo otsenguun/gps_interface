@@ -8,10 +8,10 @@
                     
                     <li class="menu-title">User Stats</li><!-- /.menu-title -->
                      <li>
-                        <a href="{{url('/showcustomers')}}"><i class="menu-icon fa fa-laptop"></i>Users</a>
+                        <a href="{{url('User.index')}}"><i class="menu-icon fa fa-laptop"></i>Users</a>
                     </li>
                     <li>
-                        <a href="{{url('/showcontracks')}}"><i class="menu-icon fa fa-laptop"></i>All Contracks</a>
+                        <a href="{{url('Device.index')}}"><i class="menu-icon fa fa-laptop"></i>All Devices</a>
                     </li>
 
 
