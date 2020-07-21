@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Massive.mn Contrack Manager</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <title>Massive.mn GPS</title>
+    <meta name="description" content="Massive GPS">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">

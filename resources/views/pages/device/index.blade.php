@@ -2,13 +2,70 @@
 
 @section('content')
 
+<style>
+
+#map {
+        height: 600px;
+      }
+
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    
+<script>
+      (function(exports) {
+        "use strict";
+
+        // This example creates an interactive map which constructs a polyline based on
+        // user clicks. Note that the polyline only appears once its path property
+        // contains two LatLng coordinates.
+
+        function initMap() {
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 7,
+            center: {
+              lat: 41.879,
+              lng: -87.624
+            } // Center the map on Chicago, USA.
+          });
+          exports.poly = new google.maps.Polyline({
+            strokeColor: "#000000",
+            strokeOpacity: 1.0,
+            strokeWeight: 3
+          });
+          exports.poly.setMap(exports.map); // Add a listener for the click event
+
+          exports.map.addListener("click", addLatLng);
+        } // Handles click events on a map, and adds a new point to the Polyline.
+
+        function addLatLng(event) {
+          var path = exports.poly.getPath(); // Because path is an MVCArray, we can simply append a new coordinate
+          // and it will automatically appear.
+
+          path.push(event.latLng); // Add a new marker at the new plotted point on the polyline.
+
+          var marker = new google.maps.Marker({
+            position: event.latLng,
+            title: "#" + path.getLength(),
+            map: exports.map
+          });
+        }
+
+        exports.addLatLng = addLatLng;
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
         <div class="row m-0">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Device</h1>
+                        <h1>Device / <strong><U>{{$device->name }}</U></strong> </h1> 
                     </div>
                 </div>
             </div>
@@ -32,11 +89,22 @@
 
         <div class="col-md-12">
                 
+               <div class="row">
+               
+                    <div class="col-md-7">
+                        <div class="card">
+
+                            <div id="map"></div>
+                            
+                        </div>
+
+                    </div>
                
 
-                 <div class="card">
+                <div class="col-md-5">
+                <div class="card">
                             <div class="card-header">
-                                <strong><U>{{$device->name }}</U></strong> / Data  
+                                Data  
                             </div>
                             <div class="card-body card-block">
 
@@ -47,6 +115,7 @@
 
                                         <label for="exampleInputName" class="pr-1  form-control-label">End date</label>
                                         <input type="date" id="exampleInputName" placeholder="Search here" class="form-control" name="s" value="{{isset($end_date) ? $end_date : '' }}">
+                                        <button class="btn btn-info"> <i class="fa fa-search"></i> </button>
                                     </div>
                                 </form>
                                 <hr>
@@ -95,7 +164,11 @@
 
                             </div>
                         </div>
+                </div>
+                </div>
+                 
 
+       
         </div>
 
     </div>
