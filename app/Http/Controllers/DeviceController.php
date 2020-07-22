@@ -58,7 +58,7 @@ class DeviceController extends Controller
     {
         $device = Device::find($id);
         $locations = Data::where('imei',$device->imei)->orderBy('id','desc')->limit(500)->get();
-        $datas = Data::where('imei',$device->imei)->orderBy('id','desc')->paginate(10);
+        $datas = Data::where('imei',$device->imei)->orderBy('id','desc')->paginate(500);
 
         return view('pages.device.index',compact('datas','device','locations'));
     }
