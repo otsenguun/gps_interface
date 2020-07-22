@@ -123,10 +123,10 @@
                             <form action="{{route('Device.show',$device->id)}}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="exampleInputName2" class="pr-1  form-control-label">Start date</label>
-                                        <input type="date" id="exampleInputName2" placeholder="Search here" class="form-control" name="s" value="{{isset($start_date) ? $end_date : '' }}">
+                                        <input type="text" id="exampleInputName2" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" name="start_date" value="{{isset($start_date) ? $end_date : '' }}">
 
                                         <label for="exampleInputName" class="pr-1  form-control-label">End date</label>
-                                        <input type="date" id="exampleInputName" placeholder="Search here" class="form-control" name="s" value="{{isset($end_date) ? $end_date : '' }}">
+                                        <input type="text" id="exampleInputName" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" name="end_date" value="{{isset($end_date) ? $end_date : '' }}">
                                         <button class="btn btn-info"> <i class="fa fa-search"></i> </button>
                                     </div>
                                 </form>

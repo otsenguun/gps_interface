@@ -54,13 +54,37 @@ class DeviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        $device = Device::find($id);
-        $locations = Data::where('imei',$device->imei)->orderBy('id','desc')->limit(500)->get();
-        $datas = Data::where('imei',$device->imei)->orderBy('id','desc')->paginate(500);
 
-        return view('pages.device.index',compact('datas','device','locations'));
+        $device = Device::find($id);
+
+        
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        if($start_date == ""){
+            $start_date = date('Y-m-d').' 00:00:00';
+        }
+        if($end_date == ""){
+            $end_date = date('Y-m-d').' 23:59:59';
+        }
+
+
+        $locations = Data::where('imei',$device->imei)
+        ->orderBy('id','desc')
+        ->whereBetween('created_at',[$start_date,$end_date])
+        ->limit(500)
+        ->get();
+
+        $datas = Data::where('imei',$device->imei)
+        ->orderBy('id','desc')
+        ->whereBetween('created_at',[$start_date,$end_date])
+        ->paginate(500);
+
+
+
+        return view('pages.device.index',compact('datas','device','locations','start_date','end_date'));
     }
 
     /**
