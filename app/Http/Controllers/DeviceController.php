@@ -107,4 +107,10 @@ class DeviceController extends Controller
         $device->delete();
         return redirect()->route('Device.index');
     }
+
+    public function deletedata($id){
+        $data = Data::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
 }

@@ -16,13 +16,16 @@
     ></script>
     
 <script>
-        function lat(t){
-        return (Number(t.slice(0,2)) + (Number(t.slice(2,9))/60))
+
+       function lat(t){
+            return (Number(t.slice(0,2)) + (Number(t.slice(2,9))/60))
         }
 
         function lng(g) {
-        return (Number(g.slice(0,3)) + (Number(g.slice(3,10))/60))
+            return (Number(g.slice(0,3)) + (Number(g.slice(3,10))/60))
         }
+
+     
 
       (function(exports) {
         "use strict";
@@ -32,21 +35,28 @@
         // Australia which was made by Charles Kingsford Smith.
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 3,
+            zoom: 13,
             center: {
-              lat: 0,
-              lng: -180
+             @foreach($locations as $location)
+              lat:  lat("{{$location->lat}}"),
+              lng: lng("{{$location->lng}}")
+                @break
+             @endforeach
+
             },
             mapTypeId: "terrain"
           });
+          
           var flightPlanCoordinates = [
-            { 
             @foreach($locations as $location)
-              lat: lat("{{$location->lat}}"),
-              lng: lng("{{$location->lng}}"),
-            @endforeach  
-            }
+                {
+                  lat: lat("{{$location->lat}}"),
+                  lng: lng("{{$location->lng}}")
+                },
+            @endforeach
+
           ];
+          console.log(flightPlanCoordinates);
           var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
             geodesic: true,
@@ -131,6 +141,7 @@
                                             <th>Lng</th>
                                             <th>GPS date</th>
                                             <th>Server date</th>
+                                            <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -145,6 +156,7 @@
                                             <td>
                                                 <span class="name">{{$data->created_at}}</span>
                                             </td>
+                                            <td> <a href="{{url('delete_data',$data->id)}}" class="btn btn-xs">  <i class="fa fa-trash-o"></i>  </a> </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

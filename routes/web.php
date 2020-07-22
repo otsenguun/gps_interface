@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::resource('Device','DeviceController');
 	Route::resource('User','UserController');
+
+	Route::get('delete_data/{$id}','DeviceController@deletedata');
 });
 
 
