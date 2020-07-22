@@ -5,7 +5,7 @@
 <style>
 
 #map {
-        height: 600px;
+        height: 700px;
       }
 
 </style>
@@ -16,6 +16,14 @@
     ></script>
     
 <script>
+        function lat(t){
+        return (Number(t.slice(0,2)) + (Number(t.slice(2,9))/60))
+        }
+
+        function lng(g) {
+        return (Number(g.slice(0,3)) + (Number(g.slice(3,10))/60))
+        }
+
       (function(exports) {
         "use strict";
 
@@ -32,21 +40,11 @@
             mapTypeId: "terrain"
           });
           var flightPlanCoordinates = [
-            {
-              lat: 37.772,
-              lng: -122.214
-            },
-            {
-              lat: 21.291,
-              lng: -157.821
-            },
-            {
-              lat: -18.142,
-              lng: 178.431
-            },
-            {
-              lat: -27.467,
-              lng: 153.027
+            { 
+            @foreach($locations as $location)
+              lat: lat("{{$location->lat}}"),
+              lng: lng("{{$location->lng}}")
+            @endforeach  
             }
           ];
           var flightPath = new google.maps.Polyline({
