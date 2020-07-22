@@ -43,7 +43,7 @@
             { 
             @foreach($locations as $location)
               lat: lat("{{$location->lat}}"),
-              lng: lng("{{$location->lng}}")
+              lng: lng("{{$location->lng}}"),
             @endforeach  
             }
           ];
