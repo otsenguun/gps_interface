@@ -57,8 +57,8 @@ class DeviceController extends Controller
     public function show($id)
     {
         $device = Device::find($id);
-        $locations = Data::select('lat','lng')->where('imei',$device->imei)->where('lat !=','0000.0000')->orderBy('id','desc')->limit(50)->get();
-        $datas = Data::where('imei',$device->imei)->where('lat !=','0000.0000')->orderBy('id','desc')->paginate(10);
+        $locations = Data::select('lat','lng')->where('imei',$device->imei)->whereNot('lat','0000.0000')->orderBy('id','desc')->limit(50)->get();
+        $datas = Data::where('imei',$device->imei)->whereNot('lat','0000.0000')->orderBy('id','desc')->paginate(10);
 
         return view('pages.device.index',compact('datas','device','locations'));
     }
