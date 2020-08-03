@@ -16,7 +16,6 @@
     ></script>
     
 <script>
-        var totaldistance = 0;
 
        function lat(t){
             return (Number(t.slice(0,2)) + (Number(t.slice(2,9))/60))
@@ -25,41 +24,8 @@
         function lng(g) {
             return (Number(g.slice(0,3)) + (Number(g.slice(3,10))/60))
         }
-        
-        var flightPlanCoordinates = [
-            @foreach($locations as $location)
-                {
-                  lat: lat("{{$location->lat}}"),
-                  lng: lng("{{$location->lng}}")
-                },
-            @endforeach
-
-          ];
-     
-
-      (function(exports) {
-        "use strict";
-
-        // This example creates a 2-pixel-wide red polyline showing the path of
-        // the first trans-Pacific flight between Oakland, CA, and Brisbane,
-        // Australia which was made by Charles Kingsford Smith.
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 13,
-            center: {
-             @foreach($locations as $location)
-              lat:  lat("{{$location->lat}}"),
-              lng: lng("{{$location->lng}}")
-                @break
-             @endforeach
-
-            },
-            mapTypeId: "satellite"
-          });
 
 
-           
-        
         function haversine_distance(mk1, mk2) {
           var R = 3958.8; // Radius of the Earth in miles
           var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
@@ -70,74 +36,57 @@
           var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
           return d;
         }
-        
-        flightPlanCoordinates.forEach(myFunction);
+    
+        var distance = haversine_distance(mk1, mk2);
+        document.getElementById('msg').innerHTML = "Distance between markers: " + distance.toFixed(2) + " mi.";
+     
 
-        function myFunction(item, index) {
+      (function(exports) {
+        "use strict";
+
+        // This example creates a 2-pixel-wide red polyline showing the path of
+        // the first trans-Pacific flight between Oakland, CA, and Brisbane,
+        // Australia which was made by Charles Kingsford Smith.
+
+
+        function initMap() {
+          // var bounds  = new google.maps.LatLngBounds();
+
+          var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: {
+             @foreach($locations as $location)
+              lat:  lat("{{$location->lat}}"),
+              lng: lng("{{$location->lng}}")
+                @break
+             @endforeach
+
+            },
+            mapTypeId: "terrain"
+          });
           
-            var before_index = index - 1;
+          var flightPlanCoordinates = [
+            @foreach($locations as $location)
+                {
+                  lat: lat("{{$location->lat}}"),
+                  lng: lng("{{$location->lng}}")
+                },
+            @endforeach
 
-            if(before_index < 0){
-                before_index = 0;
-            } 
-
-            var location1 = item;
-            var location2 = flightPlanCoordinates[before_index];
-
-            // console.log(location2);
-
-            var mk1 = new google.maps.Marker({position: location1});
-            var mk2 = new google.maps.Marker({position: location2});
-            
-            var distance = haversine_distance(mk1, mk2);
-
-            totaldistance = totaldistance + distance;
-            // console.log(distance);
-
-        }
-
-        
-
-        // console.log((parseFloat(totaldistance*1.60934)).toFixed(2));
-        // parseFloat("123.456").toFixed(2);
-        document.getElementById('msg').innerHTML = "Нийт явсан : <b>" + (parseFloat(totaldistance*1.60934)).toFixed(2) + "</b> км";
-          
-         
-
-
-                var lineSymbol = {
-                  path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-                }; // Create the polyline and add the symbol via the 'icons' property.
-
+          ];
+          console.log(flightPlanCoordinates);
           var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
             geodesic: true,
             strokeColor: "#FF0000",
             strokeOpacity: 1.0,
-            strokeWeight: 2,
-            icons:[
-                    {
-                      icon: lineSymbol,
-                      offset: "100%"
-                    }
-                  ],
+            strokeWeight: 2
           });
-            var bounds = new google.maps.LatLngBounds();
-            for (var i = 0; i < flightPlanCoordinates.length; i++) {
-              bounds.extend(flightPlanCoordinates[i]);
-            }
-            bounds.getCenter();
-            map.fitBounds(bounds);
-
           flightPath.setMap(map);
         }
 
-
         exports.initMap = initMap;
       })((this.window = this.window || {}));
-
-     
-
     </script>
 
 <div class="breadcrumbs">
@@ -176,12 +125,6 @@
                         <div class="card">
 
                             <div id="map"></div>
-                            <div id="msg"></div>
-                            <div>Дээд хурд : <b>{{number_format($top_speed)}}</b> km/h </div> 
-                            <div>Дундаж хурд : <b>{{number_format($avarage_speed)}}</b> km/h </div>   
-                            
-                            <div>Явсан цаг : <b>{{$run_time}}</b></div>  
-                            <div>Зогссон цаг : <b>{{$stop_time}}</b> </div>    
                             
                         </div>
 
@@ -216,7 +159,6 @@
                                             <th>Lng</th>
                                             <th>GPS date</th>
                                             <th>Server date</th>
-                                            <th>Speed</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
@@ -232,7 +174,6 @@
                                             <td>
                                                 <span class="name">{{$data->created_at}}</span>
                                             </td>
-                                            <td> {{ (0 + $data->speed)."km/h" }} </td>
                                             <td> <a href="{{url('delete_data',$data->id)}}" class="btn btn-xs">  <i class="fa fa-trash-o"></i>  </a> </td>
                                         </tr>
                                         @endforeach

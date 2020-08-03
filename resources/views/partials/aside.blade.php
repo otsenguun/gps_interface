@@ -11,7 +11,7 @@
                         <a href="{{url('User.index')}}"><i class="menu-icon fa fa-user"></i>Users</a>
                     </li>
                     <li>
-                        <a href="{{url('Device.index')}}"><i class="menu-icon fa fa-map-marker"></i>All Devices</a>
+                        <a href="{{route('Device.index')}}"><i class="menu-icon fa fa-map-marker"></i>All Devices</a>
                     </li>
 
 

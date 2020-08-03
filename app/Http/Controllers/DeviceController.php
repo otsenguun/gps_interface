@@ -57,6 +57,25 @@ class DeviceController extends Controller
     public function show($id, Request $request)
     {
 
+        function calculate_date($seconds){
+
+           
+
+            $time = floor($seconds/60/60);
+
+            $time_float = ($seconds/60/60)-$time;
+
+            $minut = floor($time_float*60);
+
+            $minut_float = ($time_float*60) - $minut;
+
+            $seconds = floor($minut_float*60);
+
+             return $time." цаг ".$minut." мин ".$seconds." сек";
+
+        }
+
+
         $device = Device::find($id);
 
         
@@ -71,10 +90,9 @@ class DeviceController extends Controller
         }
 
 
-        $locations = Data::where('imei',$device->imei)
-        ->orderBy('id','desc')
+        $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
+        ->orderBy('id','asc')
         ->whereBetween('created_at',[$start_date,$end_date])
-        ->limit(500)
         ->get();
 
         $datas = Data::where('imei',$device->imei)
@@ -82,9 +100,56 @@ class DeviceController extends Controller
         ->whereBetween('created_at',[$start_date,$end_date])
         ->paginate(500);
 
+        $top_speed = 0;
+        $avarage_speed = 0;
+
+        $total_speed = 0;
+        $total_speed_count = 0;
 
 
-        return view('pages.device.index',compact('datas','device','locations','start_date','end_date'));
+
+        $total_run_time = 0;
+        $total_stop_time = 0;
+        foreach($locations as $key => $data){
+
+            $speed = 0 + $data->speed;
+            if($top_speed <= $speed){
+                $top_speed = $speed;
+            }
+            if($key == 0){
+                continue;
+            }
+
+            if($speed > 0){
+               $total_speed_count += 1;
+               $total_speed += $speed;
+               $now_seconds = strtotime($data->datetime);
+               $before_seconds = strtotime($locations[$key - 1]->datetime);
+               $total_run_time += ($now_seconds - $before_seconds);
+  
+            }
+
+            if($speed == 0 && (0 + $locations[$key - 1]->speed) == 0){
+                
+               $now_seconds = strtotime($data->datetime);
+               $before_seconds = strtotime($locations[$key - 1]->datetime);
+               $total_stop_time += ($now_seconds - $before_seconds);
+  
+            }
+
+        }
+
+
+        // dd(calculate_date($total_run_time));
+
+        $stop_time = calculate_date($total_stop_time);
+        $run_time = calculate_date($total_run_time);
+        if($total_speed == 0 && $total_speed_count == 0){
+	$avarage_speed = 0;
+	}else{
+		$avarage_speed = ($total_speed/$total_speed_count); 
+	}
+        return view('pages.device.index',compact('datas','device','locations','start_date','end_date','top_speed','stop_time','run_time','avarage_speed'));
     }
 
     /**
