@@ -19,14 +19,18 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
 
-	Route::get('/', 'DeviceController@index')->name('devices');
+	Route::get('/', 'DeviceController@main')->name('devices');
 
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/home', 'DeviceController@main')->name('home');
 
 	Route::resource('Device','DeviceController');
 	Route::resource('User','UserController');
 
 	Route::get('delete_data/{id}','DeviceController@deletedata');
+
+
+	Route::get('/call_main','DeviceController@main_ajax');
+	
 });
 
 

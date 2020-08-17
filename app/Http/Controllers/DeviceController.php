@@ -92,11 +92,13 @@ class DeviceController extends Controller
 
         $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
         ->orderBy('id','asc')
+        ->where('lng','!=','00000.0000')
         ->whereBetween('created_at',[$start_date,$end_date])
         ->get();
 
         $datas = Data::where('imei',$device->imei)
         ->orderBy('id','desc')
+         ->where('lng','!=','00000.0000')
         ->whereBetween('created_at',[$start_date,$end_date])
         ->paginate(500);
 
@@ -201,5 +203,58 @@ class DeviceController extends Controller
         $data = Data::find($id);
         $data->delete();
         return redirect()->back();
+    }
+
+    public function main(Request $request){
+
+
+        $devices = Device::select('name','imei')->get();
+
+        $device_datas = [];
+
+        foreach ($devices as $key => $value) {
+            $dev_data = Data::select('lat','lng','speed')
+            ->where('imei',$value->imei)
+            ->where('lng','!=','00000.0000')
+            ->orderBy('datetime','desc')
+            ->first();
+            if($dev_data != ''){
+                $data = new \StdClass;
+                $data->name = $value->name;
+                $data->lat = $dev_data->lat;
+                $data->lng = $dev_data->lng;
+                $data->speed = $dev_data->speed;
+                $device_datas[$value->imei] = $data;
+            }
+        }
+
+        return view('pages.main',compact('devices','device_datas'));
+
+    }
+    
+
+    public function main_ajax(Request $request){
+
+        $devices = $request->imeis;
+
+        $data = [];
+
+        foreach ($devices as $key => $value) {
+
+            $pin = Data::select('lat','lng','speed')
+            ->where('imei',$value)
+            ->where('lng','!=','00000.0000')
+            ->orderBy('created_at','asc')
+            ->first();
+
+            if($pin !=''){
+                $data[] = $pin;
+            }
+
+        }
+
+       return response()->json(['data' => $data]); 
+       
+
     }
 }
