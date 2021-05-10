@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Data;
 use App\Device;
+use App\LastDistance;
+
 class DeviceController extends Controller
 {
     /**
@@ -59,7 +61,7 @@ class DeviceController extends Controller
 
         function calculate_date($seconds){
 
-           
+
 
             $time = floor($seconds/60/60);
 
@@ -78,7 +80,7 @@ class DeviceController extends Controller
 
         $device = Device::find($id);
 
-        
+
         $start_date = $request->start_date;
         $end_date = $request->end_date;
 
@@ -128,15 +130,15 @@ class DeviceController extends Controller
                $now_seconds = strtotime($data->datetime);
                $before_seconds = strtotime($locations[$key - 1]->datetime);
                $total_run_time += ($now_seconds - $before_seconds);
-  
+
             }
 
             if($speed == 0 && (0 + $locations[$key - 1]->speed) == 0){
-                
+
                $now_seconds = strtotime($data->datetime);
                $before_seconds = strtotime($locations[$key - 1]->datetime);
                $total_stop_time += ($now_seconds - $before_seconds);
-  
+
             }
 
         }
@@ -149,7 +151,7 @@ class DeviceController extends Controller
         if($total_speed == 0 && $total_speed_count == 0){
 	$avarage_speed = 0;
 	}else{
-		$avarage_speed = ($total_speed/$total_speed_count); 
+		$avarage_speed = ($total_speed/$total_speed_count);
 	}
         return view('pages.device.index',compact('datas','device','locations','start_date','end_date','top_speed','stop_time','run_time','avarage_speed'));
     }
@@ -162,10 +164,10 @@ class DeviceController extends Controller
      */
     public function edit($id)
     {
-    
+
        $device = Device::find($id);
        return view('pages.device.edit',compact('device'));
-    
+
     }
 
     /**
@@ -231,7 +233,7 @@ class DeviceController extends Controller
         return view('pages.main',compact('devices','device_datas'));
 
     }
-    
+
 
     public function main_ajax(Request $request){
 
@@ -253,36 +255,30 @@ class DeviceController extends Controller
 
         }
 
-       return response()->json(['data' => $data]); 
-       
+       return response()->json(['data' => $data]);
+
 
     }
 
      public function getlastdistace(Request $request){
 
-  
-
-        // $data = [];
-
-
-        $pin = Data::select('lat','lng','speed')
-        ->where('imei',359960106118963)
+        $pins = LastDistance::select('lat','lng','speed')
         ->where('lng','!=','00000.0000')
         ->orderBy('datetime','desc')
-        ->first();
+        ->get();
 
 
-        // $devices = Device::select('name','imei')->where('imei',$pin->imei)->first();
-        $name = 'at05';
-        $data['dev_name'] =  $name;
-        $data['lat'] = $pin->lat;
-        $data['lng'] = $pin->lng;
-        
-        
-        // $data[ 0 => $name, 1 => $pin->lat, 2 => $pin->lng];
+        $alldata = [];
+        foreach($pins as $pin){
+            $name = $pin->GetDeviceName();
+            $data['dev_name'] =  $name;
+            $data['lat'] = $pin->lat;
+            $data['lng'] = $pin->lng;
+            $alldata[] = $data;
+        }
 
-       return response()->json(['data' => $data]); 
-       
+       return response()->json(['data' => $alldata]);
+
 
     }
 

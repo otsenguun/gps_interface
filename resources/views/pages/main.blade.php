@@ -21,7 +21,7 @@
       defer
     ></script>
 
- 
+
 <script>
 
 
@@ -38,9 +38,9 @@
      //  let map;
      //  let markers = [];
 
-      
-			
-		      
+
+
+
      //  function initMap() {
      //    map = new google.maps.Map(document.getElementById('map'), {
      //      zoom: 9,
@@ -51,7 +51,7 @@
      //      }
      //    });
 
-     //    setInterval(function(){ 
+     //    setInterval(function(){
 
      //      // console.log('asdasd');
 
@@ -59,23 +59,23 @@
      //              type: "get",
      //              url: "{{url('/getlastdistace')}}",
      //          }).done(function (response) {
-                   
+
      //                var iconurl = "{{asset('images/pulse_dot.gif')}}";
 
      //                var lat = parseFloat(fixlat(response.data.lat));
      //                var lng = parseFloat(fixlng(response.data.lng));
 
 					// console.log(markers);
-                    
+
      //                deleteMarkers();
 
      //                console.log(markers);
      //                 markers = [
      //                    [response.data.dev_name , lat,lng , 0],
      //                  ];
-                      
+
      //                 setMarkers(map);
-                     
+
      //          }).fail(function () {
      //              alert("Холболт амжилтгүй");
      //          });
@@ -158,7 +158,7 @@
 		  });
 
 		  // Adds a marker at the center of the map.
-		       setInterval(function(){ 
+		       setInterval(function(){
 
 		          // console.log('asdasd');
 
@@ -166,22 +166,28 @@
 		                  type: "get",
 		                  url: "{{url('/getlastdistace')}}",
 		              }).done(function (response) {
-		                   
-		                    var iconurl = "{{asset('images/pulse_dot.gif')}}";
 
-		                    var lat = parseFloat(fixlat(response.data.lat));
-		                    var lng = parseFloat(fixlng(response.data.lng));
-		                    
+
+
 		                    deleteMarkers();
 
-		                    addMarker(lat,lng,response.data.dev_name);	
-							
+                            $.each( response, function( key, value ) {
+
+                                var iconurl = "{{asset('images/pulse_dot.gif')}}";
+                                var lat = parseFloat(fixlat(value.lat));
+                                var lng = parseFloat(fixlng(value.lng));
+
+                                addMarker(lat,lng,value.dev_name);
+
+                            });
+
+
 		                     // markers = [
 		                     //    [response.data.dev_name , lat,lng , 0],
 		                     //  ];
-		                      
+
 		                     // setMarkers(map);
-		                     
+
 		              }).fail(function () {
 		                  alert("Холболт амжилтгүй");
 		              });
@@ -191,7 +197,7 @@
 
 
      //  }
-		  // addMarker(haightAshbury);	
+		  // addMarker(haightAshbury);
 		}
 
 
@@ -304,7 +310,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Main / <strong><U> all devices </U></strong> </h1> 
+                        <h1>Main / <strong><U> all devices </U></strong> </h1>
 
                         <!-- <img src="{{asset('images/pulse.gif')}}"> -->
                     </div>
@@ -329,30 +335,30 @@
      <div class="row">
 
         <div class="col-md-12">
-                
+
                <div class="row">
-               
+
                     <div class="col-md-9">
                         <div class="card">
 
                             <div id="map"></div>
                             <div id="other">
-                              
+
                               <button type="button" onclick="deleteMarkers()"> delete</button>
-                  
+
                             </div>
                         </div>
 
                     </div>
-               
+
 
                 <div class="col-md-3">
                 <div class="card">
                             <div class="card-header">
-                                Data  
+                                Data
                             </div>
                             <div class="card-body card-block">
-                                
+
                                  <div class="table-stats order-table ov-h">
 
                                  <table class="table">
@@ -371,7 +377,7 @@
                                             <td> <span class="product">{{$device->name}}</span> </td>
                                             <td><span class="name">2200220</span></td>
                                             <td> 0 </td>
-  
+
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -383,15 +389,15 @@
                             </div>
                             <div class="card-footer">
 
-                           
+
 
                             </div>
                         </div>
                 </div>
                 </div>
-                 
 
-       
+
+
         </div>
 
     </div>
