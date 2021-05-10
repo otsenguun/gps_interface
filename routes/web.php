@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
+
+
 Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('/', 'DeviceController@main')->name('devices');
+
 
 	Route::get('/home', 'DeviceController@main')->name('home');
 
@@ -30,6 +33,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 	Route::get('/call_main','DeviceController@main_ajax');
+
+	Route::get('/getlastdistace','DeviceController@getlastdistace');
+
+	
 	
 });
 

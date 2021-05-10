@@ -93,13 +93,13 @@ class DeviceController extends Controller
         $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
         ->orderBy('id','asc')
         ->where('lng','!=','00000.0000')
-        ->whereBetween('created_at',[$start_date,$end_date])
+        ->whereBetween('datetime',[$start_date,$end_date])
         ->get();
 
         $datas = Data::where('imei',$device->imei)
         ->orderBy('id','desc')
          ->where('lng','!=','00000.0000')
-        ->whereBetween('created_at',[$start_date,$end_date])
+        ->whereBetween('datetime',[$start_date,$end_date])
         ->paginate(500);
 
         $top_speed = 0;
@@ -244,7 +244,7 @@ class DeviceController extends Controller
             $pin = Data::select('lat','lng','speed')
             ->where('imei',$value)
             ->where('lng','!=','00000.0000')
-            ->orderBy('created_at','asc')
+            ->orderBy('datetime','desc')
             ->first();
 
             if($pin !=''){
@@ -257,4 +257,33 @@ class DeviceController extends Controller
        
 
     }
+
+     public function getlastdistace(Request $request){
+
+  
+
+        // $data = [];
+
+
+        $pin = Data::select('lat','lng','speed')
+        ->where('imei',359960106118963)
+        ->where('lng','!=','00000.0000')
+        ->orderBy('datetime','desc')
+        ->first();
+
+
+        // $devices = Device::select('name','imei')->where('imei',$pin->imei)->first();
+        $name = 'at05';
+        $data['dev_name'] =  $name;
+        $data['lat'] = $pin->lat;
+        $data['lng'] = $pin->lng;
+        
+        
+        // $data[ 0 => $name, 1 => $pin->lat, 2 => $pin->lng];
+
+       return response()->json(['data' => $data]); 
+       
+
+    }
+
 }
