@@ -8,7 +8,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Төхөөрөмж</h1>
+                        <h1>Байгууллага</h1>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Нүүр хуудас</a></li>
-                            <li><a href="#">Төхөөрөмж</a></li>
+                            <li><a href="#">Байгууллага</a></li>
                             <li class="active">Жагсаалт</li>
                         </ol>
                     </div>
@@ -34,21 +34,21 @@
 
                  <div class="card">
                             <div class="card-header">
-                                <strong><U>Жагсаалт</U></strong> Төхөөрөмж
+                                <strong><U>Жагсаалт</U></strong> Байгууллага
                             </div>
                             <div class="card-body card-block">
                             <div class="row">
                                 <div class="col-md-9">
 
-                                <form action="{{route('Device.index')}}" method="get" class="form-inline">
+                                <form action="{{route('Customer.index')}}" method="get" class="form-inline">
                                     <div class="form-group">
-                                        <label for="exampleInputName2" class="pr-1  form-control-label">Search Box</label>
-                                        <input type="text" id="exampleInputName2" placeholder="Search here" class="form-control" name="s" value="{{isset($s) ? $s : '' }}"></div>
+                                        <label for="exampleInputName2" class="pr-1  form-control-label">Хайлтын цонх</label>
+                                        <input type="text" id="exampleInputName2" placeholder="Хайх утга" class="form-control" name="s" value="{{isset($s) ? $s : '' }}"></div>
                                 </form>
 
                                 </div>
                                 <div class="col-md-3">
-                                <a href="{{route('Device.create')}}" class="btn btn-info btn-sm pull-right"> Нэмэх   </a>
+                                <a href="{{route('Customer.create')}}" class="btn btn-info btn-sm pull-right"> Нэмэх   </a>
 
                                 </div>
                             </div>
@@ -63,29 +63,28 @@
                                             <th class="serial">#</th>
                                             <th>ID</th>
                                             <th>Нэр</th>
-                                            <th>Emei</th>
-
-                                            <th>Утасний дугаар</th>
-                                            <th>Жолоочийн тухай</th>
-
-                                            <th>Төлөв</th>
-                                            <th>Тохиргоо</th>
+                                            <th>Регистэр</th>
+                                            <th>Утас</th>
+                                            <th>Дансны дугаар</th>
+                                            <th>Тохируулга</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($devices as $key => $device)
+                                        @foreach($customers as $key => $customer)
                                         <tr>
                                             <td class="serial">{{$key+1 }}</td>
-                                            <td>  <span class="name">{{$device->id}}</span> </td>
-                                            <td>  <span class="name"> <a href="{{route('Device.show',$device->id)}}" class="btn btn-info">{{$device->name}}</a> </span> </td>
-                                            <td>  <span class="name">{{$device->imei}}</span> </td>
-                                            <td>  <span class="name">{{$device->phone}}</span> </td>
-                                            <td>  <span class="name">{{$device->driver_name}}</span> </td>
-
+                                            <td>  <span class="name">{{$customer->id}}</span> </td>
+                                            <td>  <span class="name"> <a href="{{route('Customer.show',$customer->id)}}" class="btn btn-info">{{$customer->name}}</a> </span> </td>
+                                            <td>  <span class="name">{{$customer->re_number}}</span> </td>
                                             <td>
-                                                <span class="name">{{$device->status}}</span>
+                                                <span class="name">{{$customer->phone}}</span>
                                             </td>
-                                            <td>   <a href="{{route('Device.edit',$device->id)}}" class="btn btn-warning"> Засах</a> </td>
+                                            <td>
+                                                <span class="name">{{$customer->acount_number}}</span>
+                                            </td>
+                                            <td>   <a href="{{route('Customer.edit',$customer->id)}}" class="btn btn-warning"> Засах</a>
+                                                   <a href="{{url('CustomerAddUser',$customer->id)}}" class="btn btn-primary"> Хэрэглэгч нэмэх</a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -96,7 +95,7 @@
                             </div>
                             <div class="card-footer">
 
-                            {{ $devices->links() }}
+                            {{ $customers->links() }}
 
                             </div>
                         </div>

@@ -3,16 +3,30 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="/"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="/"><i class="menu-icon fa fa-laptop"></i>Нүүр хуудас </a>
                     </li>
-                    
-                    <li class="menu-title">User Stats</li><!-- /.menu-title -->
-                     <li>
-                        <a href="{{url('User.index')}}"><i class="menu-icon fa fa-user"></i>Users</a>
-                    </li>
-                    <li>
-                        <a href="{{route('Device.index')}}"><i class="menu-icon fa fa-map-marker"></i>All Devices</a>
-                    </li>
+
+                    <li class="menu-title">Хэрэглэгчийн үйлдэл</li><!-- /.menu-title -->
+
+                    @if(Auth::user()->type == 9)
+                        <li>
+                            <a href="{{route('User.index')}}"><i class="menu-icon fa fa-user"></i>Хэрэглэгчид</a>
+                        </li>
+                        <li>
+                            <a href="{{route('Customer.index')}}"><i class="menu-icon fa fa-user"></i>Байгууллагууд</a>
+                        </li>
+                        <li>
+                            <a href="{{route('Device.index')}}"><i class="menu-icon fa fa-map-marker"></i>Төхөөрөмжүүд</a>
+                        </li>
+
+                    @else
+
+                        <li>
+                            <a href="{{url('listDevices')}}"><i class="menu-icon fa fa-map-marker"></i>Төхөөрөмжүүд</a>
+                        </li>
+
+                    @endif
+
 
 
                 </ul>

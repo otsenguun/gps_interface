@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customers;
 use Illuminate\Http\Request;
 use App\Data;
 use App\Device;
@@ -24,6 +25,16 @@ class DeviceController extends Controller
 
         return view('pages.device.list',compact('devices','start_date','end_date','s'));
     }
+    public function indexorg(Request $request)
+    {
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $s = $request->s;
+
+        $devices = Device::orderBy('id','desc')->where('org_id',\Auth::user()->org_id)->search($s)->paginate(100);
+
+        return view('pages.device.listorg',compact('devices','start_date','end_date','s'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +43,8 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        return view('pages.device.create');
+        $customers = Customers::select('id','name')->get();
+        return view('pages.device.create',compact('customers'));
     }
 
     /**
@@ -46,7 +58,17 @@ class DeviceController extends Controller
         $device = new Device;
         $device->name = $request->name;
         $device->imei = $request->imei;
+        $device->org_id = $request->org_id;
+        $device->phone = $request->phone;
+        $device->pin_code = $request->pin_code;
+        $device->status = $request->status;
+        $device->driver_name = $request->driver_name;
+        $device->app_driver = $request->app_driver;
+        // $device->tt_send_status = $request->tt_send_status;
+        // $device->tt_send_date = $request->tt_send_date;
+        // $device->image = $request->image;
         $device->save();
+
         return redirect()->route('Device.index');
     }
 
@@ -60,8 +82,6 @@ class DeviceController extends Controller
     {
 
         function calculate_date($seconds){
-
-
 
             $time = floor($seconds/60/60);
 
@@ -79,6 +99,14 @@ class DeviceController extends Controller
 
 
         $device = Device::find($id);
+
+        if($device == ""){
+            die('Мэдээлэл олдмонгүй');
+        }
+
+        if(\Auth::user()->type != 9 && \Auth::user()->org_id != $device->org_id){
+            die('Хандөх эрхгүй байна');
+        }
 
 
         $start_date = $request->start_date;
@@ -166,7 +194,8 @@ class DeviceController extends Controller
     {
 
        $device = Device::find($id);
-       return view('pages.device.edit',compact('device'));
+       $customers = Customers::select('id','name')->get();
+       return view('pages.device.edit',compact('device','customers'));
 
     }
 
@@ -182,6 +211,14 @@ class DeviceController extends Controller
         $device = Device::find($id);
         $device->name = $request->name;
         $device->imei = $request->imei;
+        $device->org_id = $request->org_id;
+        $device->phone = $request->phone;
+        $device->pin_code = $request->pin_code;
+        $device->status = $request->status;
+        $device->driver_name = $request->driver_name;
+        $device->app_driver = $request->app_driver;
+        $device->tt_send_status = $request->tt_send_status;
+        $device->tt_send_date = $request->tt_send_date;
         $device->save();
 
         return redirect()->route('Device.index');
@@ -209,9 +246,11 @@ class DeviceController extends Controller
 
     public function main(Request $request){
 
-
-        $devices = Device::select('name','imei')->get();
-
+        if(\Auth::user()->type == 9){
+            $devices = Device::select('name','imei')->get();
+        }else{
+            $devices = Device::select('name','imei')->where('org_id',\Auth::user()->org_id)->get();
+        }
         $device_datas = [];
 
         foreach ($devices as $key => $value) {
@@ -262,19 +301,47 @@ class DeviceController extends Controller
 
      public function getlastdistace(Request $request){
 
-        $pins = LastDistance::select('lat','lng','speed')
-        ->where('lng','!=','00000.0000')
-        ->orderBy('datetime','desc')
-        ->get();
+        if(\Auth::user()->type == 9){
+            $pins = LastDistance::select('lat','lng','speed')
+            ->where('lng','!=','00000.0000')
+            ->orderBy('datetime','desc')
+            ->get();
 
 
-        $alldata = [];
-        foreach($pins as $pin){
-            $name = $pin->GetDeviceName();
-            $data['dev_name'] =  $name;
-            $data['lat'] = $pin->lat;
-            $data['lng'] = $pin->lng;
-            $alldata[] = $data;
+            $alldata = [];
+            foreach($pins as $pin){
+                $name = $pin->GetDeviceName();
+                $data['dev_name'] =  $name;
+                $data['lat'] = $pin->lat;
+                $data['lng'] = $pin->lng;
+                $alldata[] = $data;
+            }
+        }else{
+            $avalable_devices = Device::select('imei')
+            ->where('org_id',\Auth::user()->org_id)
+            ->where('status',0)
+            ->get();
+            $search_devs = [];
+            foreach($avalable_devices as $dev){
+                $search_devs[$dev->imei] = $dev->imei;
+            }
+
+            $pins = LastDistance::select('lat','lng','speed')
+            ->where('lng','!=','00000.0000')
+            ->whereIn('imei',$search_devs)
+            ->orderBy('datetime','desc')
+            ->get();
+
+
+            $alldata = [];
+            foreach($pins as $pin){
+                $name = $pin->GetDeviceName();
+                $data['dev_name'] =  $name;
+                $data['lat'] = $pin->lat;
+                $data['lng'] = $pin->lng;
+                $alldata[] = $data;
+            }
+
         }
 
        return response()->json(['data' => $alldata]);

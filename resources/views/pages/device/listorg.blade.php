@@ -8,7 +8,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>User</h1>
+                        <h1>Төхөөрөмж</h1>
                     </div>
                 </div>
             </div>
@@ -16,9 +16,9 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Users</a></li>
-                            <li class="active">Lists</li>
+                            <li><a href="#">Нүүр хуудас</a></li>
+                            <li><a href="#">Төхөөрөмж</a></li>
+                            <li class="active">Жагсаалт</li>
                         </ol>
                     </div>
                 </div>
@@ -28,58 +28,61 @@
 </div>
  <div class="content">
 
- 	 <div class="row">
+     <div class="row">
 
         <div class="col-md-12">
 
                  <div class="card">
                             <div class="card-header">
-                                <strong><U>Search</U></strong> User
+                                <strong><U>Жагсаалт</U></strong> Төхөөрөмж
                             </div>
                             <div class="card-body card-block">
-                                <form action="{{url('showcustomers')}}" method="get" class="form-inline">
+                            <div class="row">
+                                <div class="col-md-9">
+
+                                <form action="{{url('listDevices')}}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="exampleInputName2" class="pr-1  form-control-label">Search Box</label>
                                         <input type="text" id="exampleInputName2" placeholder="Search here" class="form-control" name="s" value="{{isset($s) ? $s : '' }}"></div>
                                 </form>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Search
-                                </button>
-                            </div>
-                        </div>
 
-                 <div class="card">
-                            <div class="card-header">
-                                <strong><U>List</U></strong> User
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
                             </div>
-                            <div class="card-body card-block">
+
+
+
+                                <hr>
                                  <div class="table-stats order-table ov-h">
-                                <table class="table ">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th class="serial">#</th>
+                                            <th>ID</th>
                                             <th>Нэр</th>
-                                            <th>И-майл</th>
-                                            <th>Компани</th>
-                                            <th>Status</th>
+                                            <th>Emei</th>
+                                            <th>Утасний дугаар</th>
+                                            <th>Жолоочийн тухай</th>
+                                            <th>Төлөв</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        @foreach($users as $key =>$user)
+                                        @foreach($devices as $key => $device)
                                         <tr>
-                                            <td class="serial">{{$key+1}}</td>
-                                            <td> <span class="name">{{$user->name}}</span> </td>
-                                            <td> <span class="product">{{$user->email}}</span> </td>
-                                            <td> {{$user->companyName()}} </td>
+                                            <td class="serial">{{$key+1 }}</td>
+                                            <td>  <span class="name">{{$device->id}}</span> </td>
+                                            <td>  <span class="name"> <a href="{{url('Device/show',$device->id)}}" class="btn btn-info">{{$device->name}}</a> </span> </td>
+                                            <td>  <span class="name">{{$device->imei}}</span> </td>
+                                            <td>  <span class="name">{{$device->phone}}</span> </td>
+                                            <td>  <span class="name">{{$device->driver_name}}</span> </td>
+
                                             <td>
-                                                <span class="badge badge-complete">Complete</span>
+                                                <span class="name">{{$device->status}}</span>
                                             </td>
                                         </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
                             </div> <!-- /.table-stats -->
@@ -88,7 +91,8 @@
                             </div>
                             <div class="card-footer">
 
-                                {{ $users->links() }}
+                            {{ $devices->links() }}
+
                             </div>
                         </div>
 

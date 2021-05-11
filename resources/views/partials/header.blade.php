@@ -88,13 +88,16 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Миний тухай</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a href="{{ route('logout') }}" class="nav-link"
+                            onclick="event.preventDefault();
+                                                               document.getElementById('logout-form').submit();">
+                                                 <i class="fa fa-power -off"></i>Гарах
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                  @csrf
+                                              </form>
                         </div>
                     </div>
 

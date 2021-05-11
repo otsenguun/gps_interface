@@ -33,109 +33,6 @@
             return (Number(g.slice(0,3)) + (Number(g.slice(3,10))/60))
         }
 
-
-
-     //  let map;
-     //  let markers = [];
-
-
-
-
-     //  function initMap() {
-     //    map = new google.maps.Map(document.getElementById('map'), {
-     //      zoom: 9,
-     //      mapTypeId: google.maps.MapTypeId.ROADMAP,
-     //      center: {
-     //         lat: 47.924300,
-     //         lng: 106.878727
-     //      }
-     //    });
-
-     //    setInterval(function(){
-
-     //      // console.log('asdasd');
-
-     //        $.ajax({
-     //              type: "get",
-     //              url: "{{url('/getlastdistace')}}",
-     //          }).done(function (response) {
-
-     //                var iconurl = "{{asset('images/pulse_dot.gif')}}";
-
-     //                var lat = parseFloat(fixlat(response.data.lat));
-     //                var lng = parseFloat(fixlng(response.data.lng));
-
-					// console.log(markers);
-
-     //                deleteMarkers();
-
-     //                console.log(markers);
-     //                 markers = [
-     //                    [response.data.dev_name , lat,lng , 0],
-     //                  ];
-
-     //                 setMarkers(map);
-
-     //          }).fail(function () {
-     //              alert("Холболт амжилтгүй");
-     //          });
-
-
-     //     }, 10000);
-
-
-     //  }
-
-
-     //  function setMarkers(map) {
-     //  	deleteMarkers();
-     //    // Adds markers to the map.
-     //    // Marker sizes are expressed as a Size of X,Y where the origin of the image
-     //    // (0,0) is located in the top left of the image.
-     //    // Origins, anchor positions and coordinates of the marker increase in the X
-     //    // direction to the right and in the Y direction down.
-     //    const image = {
-     //      url:
-     //        "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-     //      // This marker is 20 pixels wide by 32 pixels high.
-     //      size: new google.maps.Size(20, 32),
-     //      // The origin for this image is (0, 0).
-     //      origin: new google.maps.Point(0, 0),
-     //      // The anchor for this image is the base of the flagpole at (0, 32).
-     //      anchor: new google.maps.Point(0, 32)
-     //    }; // Shapes define the clickable region of the icon. The type defines an HTML
-     //    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-     //    // The final coordinate closes the poly by connecting to the first coordinate.
-
-     //    var shape = {
-     //      coords: [1, 1, 1, 20, 18, 20, 18, 1],
-     //      type: "poly"
-     //    };
-
-     //    for (let i = 0; i < markers.length; i++) {
-     //      var beach = markers[i];
-     //      new google.maps.Marker({
-     //        position: {
-     //          lat: beach[1],
-     //          lng: beach[2]
-     //        },
-     //        map,
-     //        icon: {
-     //            url:"{{asset('images/pulse_dot.gif')}}",
-     //            scaledSize: new google.maps.Size(30, 30),
-     //            labelOrigin: new google.maps.Point(55, 12)
-     //            },
-     //        shape: shape,
-     //        title: beach[0],
-     //        label: {
-     //            text:beach[0],
-     //            fontWeight: "bold"
-     //        },
-     //        zIndex: beach[3]
-     //      });
-     //    }
-     //  }
-
       // In the following example, markers appear when the user clicks on the map.
 		// The markers are stored in an array.
 		// The user can then click an option to hide, show or delete the markers.
@@ -344,7 +241,6 @@
                             <div id="map"></div>
                             <div id="other">
 
-                              <button type="button" onclick="deleteMarkers()"> delete</button>
 
                             </div>
                         </div>

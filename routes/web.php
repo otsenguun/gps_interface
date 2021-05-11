@@ -21,23 +21,33 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
 
-	Route::get('/', 'DeviceController@main')->name('devices');
+
+        Route::get('/', 'HomeController@index');
+        Route::get('/showDevices', 'DeviceController@main');
+        Route::get('/listDevices', 'DeviceController@indexorg');
+
+        Route::get('/ShowInvoices', 'HomeController@index');
+        Route::get('/getlastdistace','DeviceController@getlastdistace');
+        Route::get('/Device/show/{id}','DeviceController@show');
 
 
-	Route::get('/home', 'DeviceController@main')->name('home');
+        Route::group(['middleware' => ['admin']], function () {
+            Route::get('/home', 'DeviceController@main')->name('home');
 
-	Route::resource('Device','DeviceController');
-	Route::resource('User','UserController');
+            Route::resource('Device','DeviceController');
+            Route::resource('User','UserController');
 
-	Route::get('delete_data/{id}','DeviceController@deletedata');
+            Route::get('delete_data/{id}','DeviceController@deletedata');
 
 
-	Route::get('/call_main','DeviceController@main_ajax');
+            Route::get('/call_main','DeviceController@main_ajax');
+            Route::get('CustomerAddUser/{id}','CustomerController@createUser');
+            Route::post('Customer/User/Create','CustomerController@storeUser');
 
-	Route::get('/getlastdistace','DeviceController@getlastdistace');
+            Route::resource('Customer','CustomerController');
+            Route::resource('Invoice','InvoiceController');
+        });
 
-	
-	
 });
 
 
