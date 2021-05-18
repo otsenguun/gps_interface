@@ -177,10 +177,10 @@ class DeviceController extends Controller
         $stop_time = calculate_date($total_stop_time);
         $run_time = calculate_date($total_run_time);
         if($total_speed == 0 && $total_speed_count == 0){
-	$avarage_speed = 0;
-	}else{
-		$avarage_speed = ($total_speed/$total_speed_count);
-	}
+    	   $avarage_speed = 0;
+    	}else{
+    		$avarage_speed = ($total_speed/$total_speed_count);
+    	}
         return view('pages.device.index',compact('datas','device','locations','start_date','end_date','top_speed','stop_time','run_time','avarage_speed'));
     }
 
@@ -247,9 +247,9 @@ class DeviceController extends Controller
     public function main(Request $request){
 
         if(\Auth::user()->type == 9){
-            $devices = Device::select('name','imei')->get();
+            $devices = Device::select('id','name','imei')->get();
         }else{
-            $devices = Device::select('name','imei')->where('org_id',\Auth::user()->org_id)->get();
+            $devices = Device::select('id','name','imei')->where('org_id',\Auth::user()->org_id)->get();
         }
         $device_datas = [];
 
@@ -302,7 +302,7 @@ class DeviceController extends Controller
      public function getlastdistace(Request $request){
 
         if(\Auth::user()->type == 9){
-            $pins = LastDistance::select('lat','lng','speed')
+            $pins = LastDistance::select('lat','lng','speed','imei','datetime')
             ->where('lng','!=','00000.0000')
             ->orderBy('datetime','desc')
             ->get();
@@ -310,10 +310,18 @@ class DeviceController extends Controller
 
             $alldata = [];
             foreach($pins as $pin){
-                $name = $pin->GetDeviceName();
-                $data['dev_name'] =  $name;
+                $device_info = $pin->GetDevice($pin->imei);
+                $data['id'] = $device_info->id;
+                $data['dev_name'] = $device_info->name;
                 $data['lat'] = $pin->lat;
                 $data['lng'] = $pin->lng;
+                $data['speed'] = $pin->speed;
+                $data['datetime'] = $pin->datetime;
+                if($data['speed'] != 0){
+                    $data['status'] = "Явж байна";
+                }else{
+                    $data['status'] = "Зогсож байна";
+                }
                 $alldata[] = $data;
             }
         }else{
@@ -326,7 +334,7 @@ class DeviceController extends Controller
                 $search_devs[$dev->imei] = $dev->imei;
             }
 
-            $pins = LastDistance::select('lat','lng','speed')
+            $pins = LastDistance::select('lat','lng','speed','imei','datetime')
             ->where('lng','!=','00000.0000')
             ->whereIn('imei',$search_devs)
             ->orderBy('datetime','desc')
@@ -335,10 +343,18 @@ class DeviceController extends Controller
 
             $alldata = [];
             foreach($pins as $pin){
-                $name = $pin->GetDeviceName();
-                $data['dev_name'] =  $name;
+                $device_info = $pin->GetDevice($pin->imei);
+                $data['id'] = $device_info->id;
+                $data['dev_name'] = $device_info->name;
                 $data['lat'] = $pin->lat;
                 $data['lng'] = $pin->lng;
+                $data['speed'] = $pin->speed;
+                $data['datetime'] = $pin->datetime;
+                if($data['speed'] != 0){
+                    $data['status'] = "Явж байна";
+                }else{
+                    $data['status'] = "Зогсож байна";
+                }
                 $alldata[] = $data;
             }
 

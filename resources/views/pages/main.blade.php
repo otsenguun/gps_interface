@@ -38,6 +38,18 @@
 		// The user can then click an option to hide, show or delete the markers.
 		let map;
 		let markers = [];
+    
+    function linechange(data){
+      
+
+      // console.log(data.id);
+
+      $('#device_date'+data.id).html(data.datetime);
+
+      $('#device_speed'+data.id).html(parseInt(data.speed) + "km/h");
+      $('#device_status'+data.id).html(data.status);
+
+    }
 
 		function initMap() {
 		  // const haightAshbury = { lat: 37.769, lng: -122.446 };
@@ -55,6 +67,29 @@
 		  });
 
 		  // Adds a marker at the center of the map.
+                $.ajax({
+                      type: "get",
+                      url: "{{url('/getlastdistace')}}",
+                  }).done(function (response) {
+
+
+
+                        deleteMarkers();
+
+                            $.each( response.data, function( key, value ) {
+                                // console.log(value);
+                                var iconurl = "{{asset('images/pulse_dot.gif')}}";
+                                var lat = parseFloat(fixlat(value.lat));
+                                var lng = parseFloat(fixlng(value.lng));
+                                linechange(response.data);
+                                addMarker(lat,lng,value.dev_name);
+
+                            });
+
+                  }).fail(function () {
+                      alert("Холболт амжилтгүй");
+                  });
+
 		       setInterval(function(){
 
 		          // console.log('asdasd');
@@ -68,12 +103,13 @@
 
 		                    deleteMarkers();
 
-                            $.each( response, function( key, value ) {
-
+                            $.each( response.data, function( key, value ) {
+                                // console.log(value);
                                 var iconurl = "{{asset('images/pulse_dot.gif')}}";
                                 var lat = parseFloat(fixlat(value.lat));
                                 var lng = parseFloat(fixlng(value.lng));
 
+                                linechange(value);
                                 addMarker(lat,lng,value.dev_name);
 
                             });
@@ -207,7 +243,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Main / <strong><U> all devices </U></strong> </h1>
+                        <h1 id="test">Main / <strong><U> all devices </U></strong> </h1>
 
                         <!-- <img src="{{asset('images/pulse.gif')}}"> -->
                     </div>
@@ -261,20 +297,24 @@
                                     <thead>
                                         <tr>
                                             <th class="serial">#</th>
-                                            <th>Name</th>
-                                            <th>Last date</th>
-                                            <th>Speed</th>
+                                            <th>Нэр</th>
+                                            <th>Огноо</th>
+                                            <th>Хурд</th>
+                                            <th>Төлөв</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($devices as $key => $device)
-                                        <tr>
+
+                                        <tr class="device" data_id="{{$device->id}}">
                                             <td class="serial">{{$key+1 }}</td>
-                                            <td> <span class="product">{{$device->name}}</span> </td>
-                                            <td><span class="name">2200220</span></td>
-                                            <td> 0 </td>
+                                            <td>{{$device->name}}</td>
+                                            <td id="device_date{{$device->id}}">-</td>
+                                            <td id="device_speed{{$device->id}}"> 0 </td>
+                                            <td id="device_status{{$device->id}}"> 0 </td>
 
                                         </tr>
+
                                         @endforeach
                                     </tbody>
                                 </table>

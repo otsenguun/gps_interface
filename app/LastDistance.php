@@ -8,18 +8,16 @@ use App\Device;
 class LastDistance extends Model
 {
 
-    public function GetDeviceName(){
+    public function GetDevice(){
 
         $name = "";
 
-        $device = Device::select('name')
+        $device = Device::select('id','name')
         ->where('imei',$this->imei)
         ->first();
 
         if($device != ""){
-            $name = $device->name;
-        }else{
-            $name = $this->imei;
+            $name = $device;
         }
 
         return $name;
