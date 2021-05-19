@@ -119,13 +119,12 @@ class DeviceController extends Controller
             $end_date = date('Y-m-d').' 23:59:59';
         }
 
-
+	
         $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
         ->orderBy('id','asc')
         ->where('lng','!=','00000.0000')
         ->whereBetween('datetime',[$start_date,$end_date])
         ->get();
-
         $datas = Data::where('imei',$device->imei)
         ->orderBy('id','desc')
          ->where('lng','!=','00000.0000')
