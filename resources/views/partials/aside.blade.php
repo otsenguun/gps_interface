@@ -18,6 +18,9 @@
                         <li>
                             <a href="{{route('Device.index')}}"><i class="menu-icon fa fa-map-marker"></i>Төхөөрөмжүүд</a>
                         </li>
+                        <li>
+                            <a href="{{url('/RawData')}}"><i class="menu-icon fa fa-map-marker"></i>Raw Data</a>
+                        </li>
 
                     @else
 

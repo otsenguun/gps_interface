@@ -42,10 +42,12 @@ Route::group(['middleware' => ['auth']], function () {
 
             Route::get('/call_main','DeviceController@main_ajax');
             Route::get('CustomerAddUser/{id}','CustomerController@createUser');
+            Route::get('/RawData','DeviceController@showRaw');
             Route::post('Customer/User/Create','CustomerController@storeUser');
 
             Route::resource('Customer','CustomerController');
             Route::resource('Invoice','InvoiceController');
+
         });
 
 });

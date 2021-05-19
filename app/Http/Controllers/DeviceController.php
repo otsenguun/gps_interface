@@ -10,6 +10,17 @@ use App\LastDistance;
 
 class DeviceController extends Controller
 {
+
+    public function showRaw(Request $request){
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $s = $request->s;
+        $datas = Data::orderBy('id','desc')->search($s)->whereBetween('datetime',[$start_date,$end_date])->paginate(100);
+
+
+        return view("pages.other.gpsraw",compact('datas','start_date','end_date','s'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -119,7 +130,7 @@ class DeviceController extends Controller
             $end_date = date('Y-m-d').' 23:59:59';
         }
 
-	
+
         $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
         ->orderBy('id','asc')
         ->where('lng','!=','00000.0000')
