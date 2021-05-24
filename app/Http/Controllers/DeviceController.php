@@ -75,7 +75,7 @@ class DeviceController extends Controller
         $device->status = $request->status;
         $device->driver_name = $request->driver_name;
         $device->app_driver = $request->app_driver;
-        // $device->tt_send_status = $request->tt_send_status;
+        $device->tt_send_status = $request->tt_send_status;
         // $device->tt_send_date = $request->tt_send_date;
         // $device->image = $request->image;
         $device->save();

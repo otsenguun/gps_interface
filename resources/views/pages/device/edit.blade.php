@@ -80,6 +80,14 @@
                                             <option @if($device->status == 1) selected @endif value="1">Идэвхигүй</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="company" class=" form-control-label">ТТ-д илгээх</label>
+                                    <select name="tt_send_status" id=""class="form-control">
+
+                                            <option @if($device->tt_send_status != 1) selected @endif value="0">Идэвхигүй</option>
+                                            <option @if($device->tt_send_status == 1) selected @endif value="1">Идэвхитэй</option>
+                                    </select>
+                                </div>
 
 
                             </div>

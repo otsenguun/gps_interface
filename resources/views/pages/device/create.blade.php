@@ -81,6 +81,14 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-6">
+                            <label for="company" class=" form-control-label">ТТ-д илгээх</label>
+                            <select name="status" id=""class="form-control">
+                                    <option value="0">Идэвхигүй</option>
+                                    <option value="1">Идэвхитэй</option>
+                            </select>
+                        </div>
+
 
                     </div>
 
