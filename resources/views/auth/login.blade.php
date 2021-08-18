@@ -97,7 +97,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url("{{asset('landingpage/src/images/gpslogin.jpg')}}");
+background-image: url("{{asset('images/gpslogin.jpg')}}");
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
