@@ -18,6 +18,7 @@
 
     .hero-media-image{
         width: 35vw;
+        min-width: 332px;
     }
 
 </style>
@@ -85,7 +86,7 @@
 									<img class="features-illustration asset-dark" src="{{asset('assets/dist/images/features-illustration-top-dark.svg')}}" alt="Feature illustration top">
 									<img class="features-illustration asset-light" src="{{asset('assets/dist/images/features-illustration-light.svg')}}" alt="Feature illustration">
 									<img class="features-box asset-light" src="{{asset('assets/dist/images/features-box-light.svg')}}" alt="Feature box">
-									<img style="width:40vw" class="features-illustration asset-light" src="{{asset('images/resposive-web-design.png')}}" alt="Feature illustration top">
+									<img style="width:40vw;min-width: 335px" class="features-illustration asset-light" src="{{asset('images/resposive-web-design.png')}}" alt="Feature illustration top">
 								</div>
 							</div>
                         </div>
