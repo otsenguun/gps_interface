@@ -17,6 +17,8 @@ class IsAdmin
     {
         if (Auth::user() &&  Auth::user()->type == 9) {
             return $next($request);
+        }else{
+            return redirect("gpsDashboard");
         }
         return redirect()->back();
     }

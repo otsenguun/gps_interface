@@ -3,7 +3,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="/"><i class="menu-icon fa fa-laptop"></i>Нүүр хуудас </a>
+                        <a href="{{url('gpsDashboard')}}"><i class="menu-icon fa fa-laptop"></i>Нүүр хуудас </a>
                     </li>
 
                     <li class="menu-title">Хэрэглэгчийн үйлдэл</li><!-- /.menu-title -->
