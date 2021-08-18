@@ -74,7 +74,7 @@
 						<div class="features-header text-center">
 							<div class="container-sm">
 								<h2 class="section-title mt-0">Хөгжүүлэлтийн үйлчилгээ</h2>
-	                            <p class="section-paragraph">Манай байгууллага нь компаны веб сайт, гар утасны аппликешин, веб аппликешин /Зарийн сайт, Худалдааны сайт, Онлайн захиалгийн сайт / системын интеграци гэх мэт программ хөгжүүлэх үйлчилгээ явуулна. </p>
+	                            <p class="section-paragraph">Манай байгууллага нь компаны веб сайт, гар утасны аппликэйшин, веб аппликэйшин /Зарийн сайт, Худалдааны сайт, Онлайн захиалгийн сайт / системын интеграци гэх мэт программ хөгжүүлэх үйлчилгээ явуулна. </p>
 								<div class="features-image">
 									<img class="features-illustration asset-dark" src="{{asset('assets/dist/images/features-illustration-dark.svg')}}" alt="Feature illustration">
 									<img class="features-box asset-dark" src="{{asset('assets/dist/images/features-box-dark.svg')}}" alt="Feature box">
@@ -118,7 +118,7 @@
                                     </div>
 									<div class="feature-content">
                                     	<h3 class="feature-title mt-0">Price</h3>
-                                    	<p class="text-sm mb-0">Хэт хямд биш, хэт үнтэй биш. Харилцагчийн шаардлагын дагуу системийн үйл ажиллагаанд тулгуурлан хугацаа тодорхойлох ба шаардагдах хугцаанаас хамаарч үнийн санал боловмруулна.</p>
+                                    	<p class="text-sm mb-0">Хэт хямд биш, хэт үнтэй биш. Харилцагчийн шаардлагын дагуу системийн үйл ажиллагаанд тулгуурлан хугацаа тодорхойлох ба шаардагдах хугцаанаас хамаарч үнийн санал боловсруулна.</p>
 									</div>
 								</div>
                             </div>
