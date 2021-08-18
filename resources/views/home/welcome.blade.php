@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="GPS хяналт,Автоматжуулалт,Вэб апп хөгжүүлэлт">
+    <meta name="keywords" content="GPS хяналт,Веб сайт хийнэ,Вэб сайт хөгжүүлнэ,Массив,Утасны апп,Utasnii application,website hiilgeh,web site hiine,gps hynalt">
+    <meta name="author" content="О.Цэнгүүн">
     <title>Massive.mn</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/dist/css/style.css')}}">
@@ -40,7 +44,7 @@
                     <div class="hero-inner">
 						<div class="hero-copy">
 	                        <h1 class="hero-title mt-0">Gps хяналт систем</h1>
-	                        <p class="hero-paragraph">Бүх төрлийн аж ахуйн нэгж болон хувь хүнд зориулсан хяналтын систем. Яг одоогийн байршил төлөв харах мөн явсан замын түүх хурд, хугцаа тооцоолж харуулна.</p>
+	                        <p class="hero-paragraph">Бүх төрлийн аж ахуйн нэгж болон хувь хүнд зориулсан хяналтын систем. Яг одоогийн байршил төлөв харах мөн явсан замын түүх хурд, хугацаа тооцоолж харуулна.</p>
 	                        <div class="hero-cta">
 								<a class="button button-primary" href="#">Дэлгэрэгүй</a>
                                 <a class="button button-info" href="{{url('/login')}}">Системд нэвтрэх</a>
@@ -118,7 +122,7 @@
                                     </div>
 									<div class="feature-content">
                                     	<h3 class="feature-title mt-0">Price</h3>
-                                    	<p class="text-sm mb-0">Хэт хямд биш, хэт үнтэй биш. Харилцагчийн шаардлагын дагуу системийн үйл ажиллагаанд тулгуурлан хугацаа тодорхойлох ба шаардагдах хугцаанаас хамаарч үнийн санал боловсруулна.</p>
+                                    	<p class="text-sm mb-0">Хэт хямд биш, хэт үнтэй биш. Харилцагчийн шаардлагын дагуу системийн үйл ажиллагаанд тулгуурлан хугацаа тодорхойлох ба шаардагдах хугацаанаас хамаарч үнийн санал боловсруулна.</p>
 									</div>
 								</div>
                             </div>

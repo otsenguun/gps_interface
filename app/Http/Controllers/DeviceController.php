@@ -262,6 +262,8 @@ class DeviceController extends Controller
             $devices = Device::select('id','name','imei')->where('org_id',\Auth::user()->org_id)->get();
         }
         $device_datas = [];
+        $lat = "";
+        $lng = "";
 
         foreach ($devices as $key => $value) {
             $dev_data = Data::select('lat','lng','speed')
@@ -276,10 +278,12 @@ class DeviceController extends Controller
                 $data->lng = $dev_data->lng;
                 $data->speed = $dev_data->speed;
                 $device_datas[$value->imei] = $data;
+                $lat = $dev_data->lat;
+                $lng = $dev_data->lng;
             }
         }
-
-        return view('pages.main',compact('devices','device_datas'));
+        // dd($device_datas);
+        return view('pages.main',compact('devices','device_datas','lat','lng'));
 
     }
 

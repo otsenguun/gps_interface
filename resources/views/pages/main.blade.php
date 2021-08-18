@@ -54,83 +54,64 @@
 		function initMap() {
 		  // const haightAshbury = { lat: 37.769, lng: -122.446 };
 		  map = new google.maps.Map(document.getElementById("map"), {
-		    zoom: 9,
+		    zoom: 11,
 		    center: {
-             lat: 47.924300,
-             lng: 106.878727
+             lat: fixlat("<?=$lat?>"),
+             lng: fixlng("<?=$lng?>")
           },
 		    mapTypeId: "terrain",
 		  });
-		  // This event listener will call addMarker() when the map is clicked.
+		  
+      // This event listener will call addMarker() when the map is clicked.
 		  map.addListener("click", (event) => {
 		    addMarker(event.latLng);
 		  });
 
-		  // Adds a marker at the center of the map.
-                $.ajax({
-                      type: "get",
-                      url: "{{url('/getlastdistace')}}",
-                  }).done(function (response) {
+      
+      
+        $.ajax({
+            type: "get",
+            url: "{{url('/getlastdistace')}}",
+        }).done(function (response) {
+              deleteMarkers();
 
+                  $.each( response.data, function( key, value ) {
+                      // console.log(value);
+                      var iconurl = "{{asset('images/pulse_dot.gif')}}";
+                      var lat = parseFloat(fixlat(value.lat));
+                      var lng = parseFloat(fixlng(value.lng));
+                      linechange(response.data);
+                      addMarker(lat,lng,value.dev_name,value.speed,value.status,value.datetime);
 
-
-                        deleteMarkers();
-
-                            $.each( response.data, function( key, value ) {
-                                // console.log(value);
-                                var iconurl = "{{asset('images/pulse_dot.gif')}}";
-                                var lat = parseFloat(fixlat(value.lat));
-                                var lng = parseFloat(fixlng(value.lng));
-                                linechange(response.data);
-                                addMarker(lat,lng,value.dev_name);
-
-                            });
-
-                  }).fail(function () {
-                      alert("Холболт амжилтгүй");
                   });
 
-		       setInterval(function(){
+        }).fail(function () {
+            alert("Холболт амжилтгүй");
+        });
 
-		          // console.log('asdasd');
+        setInterval(function(){
+            $.ajax({
+                  type: "get",
+                  url: "{{url('/getlastdistace')}}",
+              }).done(function (response) {
+                    deleteMarkers();
+                        $.each( response.data, function( key, value ) {
+                            // console.log(value);
+                            var iconurl = "{{asset('images/pulse_dot.gif')}}";
+                            var lat = parseFloat(fixlat(value.lat));
+                            var lng = parseFloat(fixlng(value.lng));
 
-		            $.ajax({
-		                  type: "get",
-		                  url: "{{url('/getlastdistace')}}",
-		              }).done(function (response) {
+                            linechange(value);
+                            addMarker(lat,lng,value.dev_name,value.speed,value.status,value.datetime);
 
+                        });
 
-
-		                    deleteMarkers();
-
-                            $.each( response.data, function( key, value ) {
-                                // console.log(value);
-                                var iconurl = "{{asset('images/pulse_dot.gif')}}";
-                                var lat = parseFloat(fixlat(value.lat));
-                                var lng = parseFloat(fixlng(value.lng));
-
-                                linechange(value);
-                                addMarker(lat,lng,value.dev_name);
-
-                            });
-
-
-		                     // markers = [
-		                     //    [response.data.dev_name , lat,lng , 0],
-		                     //  ];
-
-		                     // setMarkers(map);
-
-		              }).fail(function () {
-		                  alert("Холболт амжилтгүй");
-		              });
+              }).fail(function () {
+                  alert("Холболт амжилтгүй");
+              });
 
 
-		         }, 10000);
-
-
-     //  }
-		  // addMarker(haightAshbury);
+          }, 10000);
 		}
 
 
@@ -183,12 +164,24 @@
         }
       }
 		// Adds a marker to the map and push to the array.
-		function addMarker(lat,lng,name) {
+		function addMarker(lat,lng,name,speed,status,datetime) {
 
 			var shape = {
 	          coords: [1, 1, 1, 20, 18, 20, 18, 1],
 	          type: "poly"
 	        };
+
+      const contentString =
+        '<div id="show_marker">' +
+            "<p>Нэр : <b>"+ name +"</b></p>" +
+            "<p>Хурд : <b>"+ parseInt(speed) + "km/h" +"</b></p>" +
+            "<p>Төлөв : <b>"+ status +"</b></p>" +
+            "<p>Огноо : <b>"+ datetime +"</b></p>" +
+        "</div>";
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+
 		  const marker = new google.maps.Marker({
 		    position: {
               lat: lat,
@@ -207,6 +200,17 @@
 	                fontWeight: "bold"
 	            }
 		  });
+
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+          shouldFocus: false,
+        });
+        map.setZoom(13);
+        map.setCenter(marker.getPosition());
+      });
+
 		  markers.push(marker);
 		}
 
