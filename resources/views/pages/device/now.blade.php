@@ -142,7 +142,10 @@
                                     <div class="form-group">
                                         <label for="exampleInputName2" class="pr-1  form-control-label">Start date</label>
                                         <input type="text" id="exampleInputName2" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" name="start_date" value="{{isset($start_date) ? $start_date : '' }}">
-
+                
+                                    </div>
+                                    <div class="form-group">
+                                      
                                         <label for="exampleInputName" class="pr-1  form-control-label">End date</label>
                                         <input type="text" id="exampleInputName" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" name="end_date" value="{{isset($end_date) ? $end_date : '' }}">
                                         <button class="btn btn-info"> <i class="fa fa-search"></i> </button>

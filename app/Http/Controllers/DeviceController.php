@@ -123,23 +123,33 @@ class DeviceController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
 
+        $start_time = $request->start_time;
+        $end_time = $request->end_time;
+
         if($start_date == ""){
-            $start_date = date('Y-m-d').' 00:00:00';
+            $start_date = date('Y-m-d');
         }
         if($end_date == ""){
-            $end_date = date('Y-m-d').' 23:59:59';
+            $end_date = date('Y-m-d');
+        }
+        if($start_time == ""){
+            $start_time = " 00:00:00";
+        }
+        if($end_time == ""){
+            $end_time = " 23:59:59";
         }
 
 
         $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
         ->orderBy('id','asc')
         ->where('lng','!=','00000.0000')
-        ->whereBetween('datetime',[$start_date,$end_date])
+        ->whereBetween('datetime',[$start_date." ".$start_time,$end_date." ".$end_time])
         ->get();
+        // dd($start_date.$start_time,$end_date.$end_time);
         $datas = Data::where('imei',$device->imei)
         ->orderBy('id','desc')
          ->where('lng','!=','00000.0000')
-        ->whereBetween('datetime',[$start_date,$end_date])
+        ->whereBetween('datetime',[$start_date." ".$start_time,$end_date." ".$end_time])
         ->paginate(500);
 
         $top_speed = 0;
@@ -191,7 +201,9 @@ class DeviceController extends Controller
     	}else{
     		$avarage_speed = ($total_speed/$total_speed_count);
     	}
-        return view('pages.device.index',compact('datas','device','locations','start_date','end_date','top_speed','stop_time','run_time','avarage_speed'));
+
+        
+        return view('pages.device.index',compact('datas','device','locations','start_date','end_date','start_time','end_time','top_speed','stop_time','run_time','avarage_speed'));
     }
 
     /**
