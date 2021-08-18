@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-
+Route::get('/', 'HomeController@welcome');
 
 Route::group(['middleware' => ['auth']], function () {
 
 
-        Route::get('/', 'HomeController@index');
+        Route::get('/gpsDashboard', 'HomeController@index');
         Route::get('/showDevices', 'DeviceController@main');
         Route::get('/listDevices', 'DeviceController@indexorg');
 

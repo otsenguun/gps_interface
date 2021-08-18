@@ -321,8 +321,14 @@ class DeviceController extends Controller
             $alldata = [];
             foreach($pins as $pin){
                 $device_info = $pin->GetDevice($pin->imei);
-                $data['id'] = $device_info->id;
-                $data['dev_name'] = $device_info->name;
+                if($device_info !=""){
+                    $data['id'] = $device_info->id;
+                    $data['dev_name'] = $device_info->name;
+                }else{
+                    $data['id'] = 0;
+                    $data['dev_name'] = "Холболт хийгдээгүй";
+                }
+                
                 $data['lat'] = $pin->lat;
                 $data['lng'] = $pin->lng;
                 $data['speed'] = $pin->speed;
@@ -354,8 +360,13 @@ class DeviceController extends Controller
             $alldata = [];
             foreach($pins as $pin){
                 $device_info = $pin->GetDevice($pin->imei);
-                $data['id'] = $device_info->id;
-                $data['dev_name'] = $device_info->name;
+                if($device_info !=""){
+                    $data['id'] = $device_info->id;
+                    $data['dev_name'] = $device_info->name;
+                }else{
+                    $data['id'] = 0;
+                    $data['dev_name'] = "Холболт хийгдээгүй";
+                }
                 $data['lat'] = $pin->lat;
                 $data['lng'] = $pin->lng;
                 $data['speed'] = $pin->speed;

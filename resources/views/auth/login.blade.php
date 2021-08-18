@@ -97,7 +97,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-image: url("{{asset('landingpage/src/images/gpslogin.jpg')}}");
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -189,7 +189,7 @@ margin-left: 4px;
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3>Sign In</h3>
+                <h3>GPS системд Нэврэх</h3>
                 <div class="d-flex justify-content-end social_icon">
                     <span><i class="fab fa-facebook-square"></i></span>
                     <span><i class="fab fa-google-plus-square"></i></span>
@@ -213,19 +213,17 @@ margin-left: 4px;
                         <input type="password" name="password" class="form-control" placeholder="password">
                     </div>
                     <div class="row align-items-center remember">
-                        <input type="checkbox" name="remember">Remember Me
+                        <input type="checkbox" name="remember">Намайг сана  
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Login" class="btn float-right login_btn">
+                        <input type="submit" value="Нэврэх" class="btn float-right login_btn">
                     </div>
                 </form>
             </div>
             <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="#">Sign Up</a>
-                </div>
+           
                 <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
+                    <a href="#">Нууц үг мартсан ?</a>
                 </div>
             </div>
         </div>
