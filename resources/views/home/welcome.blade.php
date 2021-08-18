@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Massive.mn</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/landingpage/dist/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/dist/css/style.css')}}">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
 
@@ -52,12 +52,12 @@
 						</div>
 						<div class="hero-media">
 							<div class="header-illustration">
-								<img class="header-illustration-image asset-light" src="{{asset('assets/landingpage/dist/images/header-illustration-light.svg')}}" alt="Header illustration">
-								<img class="header-illustration-image asset-dark" src="{{asset('assets/landingpage/dist/images/header-illustration-dark.svg')}}" alt="Header illustration">
+								<img class="header-illustration-image asset-light" src="{{asset('assets/dist/images/header-illustration-light.svg')}}" alt="Header illustration">
+								<img class="header-illustration-image asset-dark" src="{{asset('assets/dist/images/header-illustration-dark.svg')}}" alt="Header illustration">
 							</div>
 							<div class="hero-media-illustration">
-								<img class="hero-media-illustration-image asset-light" src="{{asset('assets/landingpage/dist/images/hero-media-illustration-light.svg')}}" alt="Hero media illustration">
-								<img class="hero-media-illustration-image asset-dark" src="{{asset('assets/landingpage/dist/images/hero-media-illustration-dark.svg')}}" alt="Hero media illustration">
+								<img class="hero-media-illustration-image asset-light" src="{{asset('assets/dist/images/hero-media-illustration-light.svg')}}" alt="Hero media illustration">
+								<img class="hero-media-illustration-image asset-dark" src="{{asset('assets/dist/images/hero-media-illustration-dark.svg')}}" alt="Hero media illustration">
 							</div>
 							<div class="hero-media-container">
 								<img class="hero-media-image asset-light" src="{{asset('images/hero-media-light.jpg')}}" alt="Hero media">
@@ -76,11 +76,11 @@
 								<h2 class="section-title mt-0">Хөгжүүлэлтийн үйлчилгээ</h2>
 	                            <p class="section-paragraph">Манай байгууллага нь компаны веб сайт, гар утасны аппликешин, веб аппликешин /Зарийн сайт, Худалдааны сайт, Онлайн захиалгийн сайт / системын интеграци гэх мэт программ хөгжүүлэх үйлчилгээ явуулна. </p>
 								<div class="features-image">
-									<img class="features-illustration asset-dark" src="{{asset('assets/landingpage/dist/images/features-illustration-dark.svg')}}" alt="Feature illustration">
-									<img class="features-box asset-dark" src="{{asset('assets/landingpage/dist/images/features-box-dark.svg')}}" alt="Feature box">
-									<img class="features-illustration asset-dark" src="{{asset('assets/landingpage/dist/images/features-illustration-top-dark.svg')}}" alt="Feature illustration top">
-									<img class="features-illustration asset-light" src="{{asset('assets/landingpage/dist/images/features-illustration-light.svg')}}" alt="Feature illustration">
-									<img class="features-box asset-light" src="{{asset('assets/landingpage/dist/images/features-box-light.svg')}}" alt="Feature box">
+									<img class="features-illustration asset-dark" src="{{asset('assets/dist/images/features-illustration-dark.svg')}}" alt="Feature illustration">
+									<img class="features-box asset-dark" src="{{asset('assets/dist/images/features-box-dark.svg')}}" alt="Feature box">
+									<img class="features-illustration asset-dark" src="{{asset('assets/dist/images/features-illustration-top-dark.svg')}}" alt="Feature illustration top">
+									<img class="features-illustration asset-light" src="{{asset('assets/dist/images/features-illustration-light.svg')}}" alt="Feature illustration">
+									<img class="features-box asset-light" src="{{asset('assets/dist/images/features-box-light.svg')}}" alt="Feature box">
 									<img style="width:40vw" class="features-illustration asset-light" src="{{asset('images/resposive-web-design.png')}}" alt="Feature illustration top">
 								</div>
 							</div>
@@ -89,8 +89,8 @@
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<img class="asset-light" src="{{asset('assets/landingpage/dist/images/feature-01-light.svg')}}" alt="Feature 01">
-										<img class="asset-dark" src="{{asset('assets/landingpage/dist/images/feature-01-dark.svg')}}" alt="Feature 01">
+										<img class="asset-light" src="{{asset('assets/dist/images/feature-01-light.svg')}}" alt="Feature 01">
+										<img class="asset-dark" src="{{asset('assets/dist/images/feature-01-dark.svg')}}" alt="Feature 01">
                                     </div>
 									<div class="feature-content">
                                     	<h3 class="feature-title mt-0">Interface</h3>
@@ -101,8 +101,8 @@
 							<div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<img class="asset-light" src="{{asset('assets/landingpage/dist/images/feature-02-light.svg')}}" alt="Feature 02">
-										<img class="asset-dark" src="{{asset('assets/landingpage/dist/images/feature-02-dark.svg')}}" alt="Feature 02">
+										<img class="asset-light" src="{{asset('assets/dist/images/feature-02-light.svg')}}" alt="Feature 02">
+										<img class="asset-dark" src="{{asset('assets/dist/images/feature-02-dark.svg')}}" alt="Feature 02">
                                     </div>
 									<div class="feature-content">
                                     	<h3 class="feature-title mt-0">Security</h3>
@@ -113,8 +113,8 @@
 							<div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <div class="feature-icon">
-										<img class="asset-light" src="{{asset('assets/landingpage/dist/images/feature-03-light.svg')}}" alt="Feature 03">
-										<img class="asset-dark" src="{{asset('assets/landingpage/dist/images/feature-03-dark.svg')}}" alt="Feature 03">
+										<img class="asset-light" src="{{asset('assets/dist/images/feature-03-light.svg')}}" alt="Feature 03">
+										<img class="asset-dark" src="{{asset('assets/dist/images/feature-03-dark.svg')}}" alt="Feature 03">
                                     </div>
 									<div class="feature-content">
                                     	<h3 class="feature-title mt-0">Price</h3>
@@ -188,6 +188,6 @@
         </footer>
     </div>
 
-    <script src="{{asset('assets/landingpage/dist/js/main.min.js')}}"></script>
+    <script src="{{asset('assets/dist/js/main.min.js')}}"></script>
 </body>
 </html>
