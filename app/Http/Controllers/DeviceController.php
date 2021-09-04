@@ -266,6 +266,125 @@ class DeviceController extends Controller
         return redirect()->back();
     }
 
+    public function playroad($id, Request $request)
+    {
+
+        function calculate_date($seconds){
+
+            $time = floor($seconds/60/60);
+
+            $time_float = ($seconds/60/60)-$time;
+
+            $minut = floor($time_float*60);
+
+            $minut_float = ($time_float*60) - $minut;
+
+            $seconds = floor($minut_float*60);
+
+             return $time." цаг ".$minut." мин ".$seconds." сек";
+
+        }
+
+
+        $device = Device::find($id);
+
+        if($device == ""){
+            die('Мэдээлэл олдмонгүй');
+        }
+
+        if(\Auth::user()->type != 9 && \Auth::user()->org_id != $device->org_id){
+            die('Хандөх эрхгүй байна');
+        }
+
+
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        $start_time = $request->start_time;
+        $end_time = $request->end_time;
+
+        if($start_date == ""){
+            $start_date = date('Y-m-d');
+        }
+        if($end_date == ""){
+            $end_date = date('Y-m-d');
+        }
+        if($start_time == ""){
+            $start_time = " 00:00:00";
+        }
+        if($end_time == ""){
+            $end_time = " 23:59:59";
+        }
+
+
+        $locations = Data::select('lat','lng','datetime','speed')->where('imei',$device->imei)
+        ->orderBy('id','asc')
+        ->where('lng','!=','00000.0000')
+        ->where('speed','!=','0')
+        ->whereBetween('datetime',[$start_date." ".$start_time,$end_date." ".$end_time])
+        ->get();
+        // dd($start_date.$start_time,$end_date.$end_time);
+        $datas = Data::where('imei',$device->imei)
+        ->orderBy('id','desc')
+         ->where('lng','!=','00000.0000')
+        ->whereBetween('datetime',[$start_date." ".$start_time,$end_date." ".$end_time])
+        ->paginate(500);
+
+        $top_speed = 0;
+        $avarage_speed = 0;
+
+        $total_speed = 0;
+        $total_speed_count = 0;
+
+
+
+        $total_run_time = 0;
+        $total_stop_time = 0;
+        foreach($locations as $key => $data){
+
+            $speed = 0 + $data->speed;
+            if($top_speed <= $speed){
+                $top_speed = $speed;
+            }
+            if($key == 0){
+                continue;
+            }
+
+            if($speed > 0){
+               $total_speed_count += 1;
+               $total_speed += $speed;
+               $now_seconds = strtotime($data->datetime);
+               $before_seconds = strtotime($locations[$key - 1]->datetime);
+               $total_run_time += ($now_seconds - $before_seconds);
+
+            }
+
+            if($speed == 0 && (0 + $locations[$key - 1]->speed) == 0){
+
+               $now_seconds = strtotime($data->datetime);
+               $before_seconds = strtotime($locations[$key - 1]->datetime);
+               $total_stop_time += ($now_seconds - $before_seconds);
+
+            }
+
+        }
+
+
+        // dd(calculate_date($total_run_time));
+
+        $stop_time = calculate_date($total_stop_time);
+        $run_time = calculate_date($total_run_time);
+        if($total_speed == 0 && $total_speed_count == 0){
+    	   $avarage_speed = 0;
+    	}else{
+    		$avarage_speed = ($total_speed/$total_speed_count);
+    	}
+
+        
+        return view('pages.device.road_play',compact('datas','device','locations','start_date','end_date','start_time','end_time','top_speed','stop_time','run_time','avarage_speed'));
+    }
+
+
     public function main(Request $request){
 
         if(\Auth::user()->type == 9){

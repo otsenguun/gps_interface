@@ -171,18 +171,18 @@
 	          type: "poly"
 	        };
 
-      const contentString =
+      let contentString =
         '<div id="show_marker">' +
             "<p>Нэр : <b>"+ name +"</b></p>" +
             "<p>Хурд : <b>"+ parseInt(speed) + "km/h" +"</b></p>" +
             "<p>Төлөв : <b>"+ status +"</b></p>" +
             "<p>Огноо : <b>"+ datetime +"</b></p>" +
         "</div>";
-      const infowindow = new google.maps.InfoWindow({
+      let infowindow = new google.maps.InfoWindow({
         content: contentString,
       });
 
-		  const marker = new google.maps.Marker({
+		  let marker = new google.maps.Marker({
 		    position: {
               lat: lat,
               lng: lng

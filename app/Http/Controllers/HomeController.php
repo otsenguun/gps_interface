@@ -39,4 +39,8 @@ class HomeController extends Controller
         return view("home.welcome");
     }
 
+    public function test(){
+        return view("home.test");
+    }
+
 }

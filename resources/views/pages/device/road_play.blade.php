@@ -25,109 +25,87 @@
         function lng(g) {
             return (Number(g.slice(0,3)) + (Number(g.slice(3,10))/60))
         }
-        
-        var flightPlanCoordinates = [
-            @foreach($locations as $location)
-                {
-                  lat: lat("{{$location->lat}}"),
-                  lng: lng("{{$location->lng}}")
-                },
-            @endforeach
 
-          ];
-     
-
-      (function(exports) {
-        "use strict";
-
-        // This example creates a 2-pixel-wide red polyline showing the path of
-        // the first trans-Pacific flight between Oakland, CA, and Brisbane,
-        // Australia which was made by Charles Kingsford Smith.
         function initMap() {
-          var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 13,
-            center: {
-             @foreach($locations as $location)
-              lat:  lat("{{$location->lat}}"),
-              lng: lng("{{$location->lng}}")
-                @break
-             @endforeach
+			var map = new google.maps.Map(document.getElementById("map"), {
+			  center: {lat: pathCoords[0].lat, lng: pathCoords[0].lng},
+			  zoom: 14,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+			
+			autoRefresh(map);
+            // google.maps.event.addDomListener(window, 'load', initialize);
+		}
 
+		function moveMarker(map, marker, latlng) {
+			marker.setPosition(latlng);
+			map.panTo(latlng);
+		}
+
+		function autoRefresh(map) {
+			var i, route, marker;
+			
+			route = new google.maps.Polyline({
+				path: [],
+				geodesic : true,
+				strokeColor: '#FF0000',
+				strokeOpacity: 1.0,
+				strokeWeight: 2,
+				editable: false,
+				map:map
+			});
+			
+			marker=new google.maps.Marker(
+            {
+            map:map,
+            icon: 
+                {
+	            url:"{{asset('images/pulse_dot.gif')}}",
+	            origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(20, 20),
+                scaledSize: new google.maps.Size(30, 30),
+                labelOrigin: new google.maps.Point(9, 8)
+	            }
             },
-            mapTypeId: "terrain"
-          });
-        
-        function haversine_distance(mk1, mk2) {
-          var R = 3958.8; // Radius of the Earth in miles
-          var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
-          var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
-          var difflat = rlat2-rlat1; // Radian difference (latitudes)
-          var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
+            );
+            // let contentString =
+            //     '<div id="show_marker">' +
+            //         "<p>Нэр : <b>"+ name +"</b></p>" +
+            //         "<p>Хурд : <b>"+ parseInt(speed) + "km/h" +"</b></p>" +
+            //         "<p>Төлөв : <b>"+ status +"</b></p>" +
+            //         "<p>Огноо : <b>"+ datetime +"</b></p>" +
+            //     "</div>";
+            // let infowindow = new google.maps.InfoWindow({
+            //     content: contentString,
+            // });
 
-          var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
-          return d;
-        }
-        
-        flightPlanCoordinates.forEach(myFunction);
-
-        function myFunction(item, index) {
-          
-            var before_index = index - 1;
-
-            if(before_index < 0){
-                before_index = 0;
-            } 
-
-            var location1 = item;
-            var location2 = flightPlanCoordinates[before_index];
-
-            // console.log(location2);
-
-            var mk1 = new google.maps.Marker({position: location1});
-            var mk2 = new google.maps.Marker({position: location2});
+            // infowindow.open({
+            //     anchor: marker,
+            //     map,
+            //     shouldFocus: false,
+            // });
             
-            var distance = haversine_distance(mk1, mk2);
 
-            totaldistance = totaldistance + distance;
-            // console.log(distance);
+			for (i = 0; i < pathCoords.length; i++) {
+				setTimeout(function (coords)
+				{
+					var latlng = new google.maps.LatLng(coords.lat, coords.lng);
+					route.getPath().push(latlng);
+					moveMarker(map, marker, latlng);
+				}, 200 * i, pathCoords[i]);
+			}
+		}
 
-        }
-
-        document.getElementById('msg').innerHTML = "Нийт явсан : <b>" + (parseFloat(totaldistance*1.60934)).toFixed(2) + "</b> км";
-    
-        var lineSymbol = {
-            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-        }; // Create the polyline and add the symbol via the 'icons' property.
-
-          var flightPath = new google.maps.Polyline({
-            path: flightPlanCoordinates,
-            geodesic: true,
-            strokeColor: "#b753d7",
-            strokeOpacity: 2.0,
-            strokeWeight: 4,
-            icons:[
-                    {
-                      icon: lineSymbol,
-                      offset: "100%"
-                    }
-                  ],
-          });
-            var bounds = new google.maps.LatLngBounds();
-            for (var i = 0; i < flightPlanCoordinates.length; i++) {
-              bounds.extend(flightPlanCoordinates[i]);
-            }
-            bounds.getCenter();
-            map.fitBounds(bounds);
-
-          flightPath.setMap(map);
-        }
-
-
-        exports.initMap = initMap;
-      })((this.window = this.window || {}));
-
-     
-
+		
+        
+		var pathCoords = [
+            @foreach($locations as $location)
+            {
+            "lat": lat("{{$location->lat}}"),
+            "lng": lng("{{$location->lng}}")
+            },
+             @endforeach
+        ];
     </script>
 
 <div class="breadcrumbs">
@@ -136,18 +114,14 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Device / <strong><U>{{$device->name }}</U></strong>   <a href="{{url('/Device/playroad',$device->id)}}" class="btn btn-primary btn-xs"> Бичлэг үзэх </a>
-               </h1> 
-                      
+                        <h1>Device / <strong><U>{{$device->name }}</U></strong> </h1> 
                     </div>
                 </div>
             </div>
             <div class="col-sm-8">
-             
                 <div class="page-header float-right">
-                       
                     <div class="page-title">
-                       <ol class="breadcrumb text-right">
+                        <ol class="breadcrumb text-right">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Device</a></li>
                             <li class="active">Detials</li>
@@ -189,7 +163,7 @@
                             </div>
                             <div class="card-body card-block">
 
-                            <form action="{{route('Device.show',$device->id)}}" method="get" class="form-inline">
+                            <form action="{{url('Device/playroad',$device->id)}}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="exampleInputName2" class="pr-1  form-control-label">Start date</label>
                                         <input type="date" id="exampleInputName2" placeholder="YYYY-MM-DD" class="form-control" name="start_date" value="{{isset($start_date) ? $start_date : '' }}">

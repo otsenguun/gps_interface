@@ -18,6 +18,7 @@ Auth::routes();
 
 
 Route::get('/', 'HomeController@welcome');
+Route::get('/test', 'HomeController@test');
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -29,7 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ShowInvoices', 'HomeController@index');
         Route::get('/getlastdistace','DeviceController@getlastdistace');
         Route::get('/Device/show/{id}','DeviceController@show');
-
+        Route::get('/Device/playroad/{id}','DeviceController@playroad');
+        
 
         Route::group(['middleware' => ['admin']], function () {
             Route::get('/home', 'DeviceController@main')->name('home');
