@@ -380,6 +380,7 @@ class DeviceController extends Controller
     		$avarage_speed = ($total_speed/$total_speed_count);
     	}
 
+        // dd($locations);
         
         return view('pages.device.road_play',compact('datas','device','locations','start_date','end_date','start_time','end_time','top_speed','stop_time','run_time','avarage_speed'));
     }

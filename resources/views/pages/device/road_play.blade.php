@@ -68,41 +68,57 @@
 	            }
             },
             );
-            // let contentString =
-            //     '<div id="show_marker">' +
-            //         "<p>Нэр : <b>"+ name +"</b></p>" +
-            //         "<p>Хурд : <b>"+ parseInt(speed) + "km/h" +"</b></p>" +
-            //         "<p>Төлөв : <b>"+ status +"</b></p>" +
-            //         "<p>Огноо : <b>"+ datetime +"</b></p>" +
-            //     "</div>";
-            // let infowindow = new google.maps.InfoWindow({
-            //     content: contentString,
-            // });
-
-            // infowindow.open({
-            //     anchor: marker,
-            //     map,
-            //     shouldFocus: false,
-            // });
+           
+            let contentString =
+                        '<div id="show_marker">' +
+                            "<p>Нэр : <b>"+ 0 +"</b></p>" +
+                            "<p>Хурд : <b>"+ "parseInt(speed)" + "km/h" +"</b></p>" +
+                            "<p>Төлөв : <b>"+ "status" +"</b></p>" +
+                            "<p>Огноо : <b>"+ "datetime" +"</b></p>" +
+                        "</div>";
+           
             
+            let infowindow = new google.maps.InfoWindow({
+                        content: contentString,
+                    });
+            infowindow.open({
+                anchor: marker,
+                map,
+                shouldFocus: false,
+            });
 
 			for (i = 0; i < pathCoords.length; i++) {
 				setTimeout(function (coords)
 				{
 					var latlng = new google.maps.LatLng(coords.lat, coords.lng);
 					route.getPath().push(latlng);
+                   
+                    newText = '<div id="show_marker">' +
+                            "<p>Нэр : <b>"+ '{{$device->name}}' +"</b></p>" +
+                            "<p>Хурд : <b>"+ parseInt(coords.speed) + "km/h" +"</b></p>" +
+                            "<p>Төлөв : <b>"+ coords.status +"</b></p>" +
+                            "<p>Огноо : <b>"+ coords.date +"</b></p>" +
+                        "</div>";
+                    // console.log(coords);
+                    infowindow.setContent(newText);
+                        // infowindow.content = contentString;
 					moveMarker(map, marker, latlng);
 				}, 200 * i, pathCoords[i]);
 			}
+            
 		}
 
 		
-        
+     
 		var pathCoords = [
             @foreach($locations as $location)
             {
             "lat": lat("{{$location->lat}}"),
-            "lng": lng("{{$location->lng}}")
+            "lng": lng("{{$location->lng}}"),
+            "speed": "{{$location->speed}}",
+            "status": "@php if(0 < (0 + $location->speed)){echo 'явж байна'; }else{ echo 'Зогсож байна'; }  @endphp",
+            "date": "{{$location->datetime}}",
+
             },
              @endforeach
         ];
