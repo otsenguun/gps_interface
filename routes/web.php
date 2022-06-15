@@ -18,7 +18,12 @@ Auth::routes();
 
 
 Route::get('/', 'HomeController@welcome');
+Route::get('/11a', 'HomeController@urilga');
 Route::get('/test', 'HomeController@test');
+
+Route::get('/confirmUrilga','HomeController@urilga');
+Route::post('/confirmUrilga','HomeController@urilgaConfirm');
+
 
 Route::group(['middleware' => ['auth']], function () {
 

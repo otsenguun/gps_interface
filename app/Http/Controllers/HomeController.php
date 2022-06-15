@@ -7,7 +7,7 @@ use App\Device;
 use App\Customers;
 use App\User;
 use App\Invoice;
-
+use App\Event;
 class HomeController extends Controller
 {
 
@@ -17,6 +17,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function urilga()
+    {
+
+        return view('urilga');
+    }
+
+    public function urilgaConfirm(Request $request)
+    {
+
+        $event = new Event;
+        $event->name = $request->name;
+        $event->phone = $request->phone;
+        $event->save();
+
+        return view('urilga_done',compact('event'));
+    }
+
     public function index()
     {
 
