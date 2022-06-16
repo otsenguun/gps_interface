@@ -63,15 +63,32 @@
 	<!--[if lt IE 9]>
 	<script src="{{asset('assets/urilga/js/respond.min.js')}}"></script>
 	<![endif]-->
-
+	
 	</head>
+	<style>
+		.shuleg{
+			font-style: italic;
+			text-align: left;
+			font-family: 'icomoon' !important;
+		}
+		.shuleg2{
+			font-style: italic;
+			text-align: left;
+			font-family: 'icomoon' !important;
+		}
+		.shuleg_div{
+			padding-left:13vw;
+			
+		}
+
+	</style>
 	<body>
 		
 	<div class="fh5co-loader"></div>
 	
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
-		<div class="container">
+		<div class="container ">
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="fh5co-logo"><a href="index.html">Urilga<strong>.</strong></a></div>
@@ -84,10 +101,10 @@
 		</div>
 	</nav>
 
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({{asset('assets/urilga/images/backgorund.jpg')}});" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
-			<div class="row">
+			<div class="row ">
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
@@ -105,20 +122,35 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<h2>Hello!</h2>
+					
+					<div class="col-md-12 shuleg_div">
+					<h4 class="shuleg">
+						Сэтгэлийн жигүүр дэлгэхэд холын газар алсдахгүй <br>
+						Итгэлийн дуу хүрэхэд эгшиг аялгуу тасрахгүй <br>
+						Хуралдсан сэтгэлийн угт олон жил хүлээгдсэн <br>
+						Хүслийн цангааг хөөр баярын нулимсаар тайлая <br>
+						</h4>
+						<h4 class="shuleg2">
+						Заавал ирээрэй уулзалтандаа  <br>
+						Хэнэггүйтэж харин ирэхгүй бол <br>
+						Хөөрхий андууд минь гомдох л байхдаа <br>
+						Учрах өдрийн тэнгэр цэлмэг байх болтугай <br>
+						Уулзах баярт мөчийг тэсэн ядан хүлээе. <br>
+					</h4>
+					</div>
 					<h3>Улаанбаатар хот 2022 оны 7-дугаар сарын 2,3,4нд</h3>
-					<p>11-а анги төгссөний 10н жилийн ойн уулзалтад уриж байна.</p>
+					<p>11-а анги төгссөний 10н жилийн ойн уулзалтад урьж байна.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/img_bg_3.jpg);">
+	<div id="fh5co-event" class="fh5co-bg" style="background-image:url({{asset('assets/urilga/images/back2.jpg')}});">
 		<div class="overlay"></div>
 		<div class="container">
 	
-			<div class="row">
-				<div class="display-t">
+			<div class="row ">
+				<div class="display-t ">
 					<div class="display-tc">
 						<div class="col-md-10 col-md-offset-1">
 							<div class="col-md-6 col-sm-6 text-center">
@@ -134,12 +166,12 @@
 										<span>2022 оны</span>
 										<span>7 дугаар сарын 2нд</span>
 									</div>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+									<p>Дурсамж үлдээх уулзалт нь Булган аймагт болох тул ойрхон байгаа найзуудтайгаа холбогдож цугтаа явцгаана</p>
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6 text-center">
 								<div class="event-wrap animate-box">
-									<h3>Зугааллага</h3>
+									<h3>Зугаалга</h3>
 									<div class="event-col">
 										<i class="icon-clock"></i>
 										<span>7:00 PM</span>
@@ -150,7 +182,7 @@
 										<span>2022 оны</span>
 										<span>7 дугаар сарын 2,3нд</span>
 									</div>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+									<p>2 хоногийн амралтаар Булган аймгийн үзэсгэлэнт газруудаар аялж гаргасан хөтөлбөрийн дагуу зугаатай цагийг өнгөрөөнө</p>
 								</div>
 							</div>
 						</div>
@@ -159,21 +191,111 @@
 			</div>
 		</div>
 	</div>
+	<div id="fh5co-gallery" class="fh5co-section-gray">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+					<span>Our Memories</span>
+					<h2> Gallery</h2>
+					<p>Бидний үлдээсэн бүх дурсамж сэтгэлд тодхон үлдэнэ</p>
+				</div>
+			</div>
+			<div class="row row-bottom-padded-md">
+				<div class="col-md-12">
+					<ul id="fh5co-gallery-list">
+						
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/1.jpg')}}); "> 
+						<a href="{{asset('assets/urilga/images/1.jpg')}}">
+							<div class="case-studies-summary">
+								
+								<h2>2012 он</h2>
+							</div>
+						</a>
+					</li>
+					<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/2.jpg')}}); ">
+						<a href="{{asset('assets/urilga/images/2.jpg')}}" class="color-2">
+							<div class="case-studies-summary">
+							
+								<h2>2012 он шинэ жил</h2>
+							</div>
+						</a>
+					</li>
 
+
+					<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/14.jpg')}}); ">
+						<a href="{{asset('assets/urilga/images/14.jpg')}}" class="color-3">
+							<div class="case-studies-summary">
+								
+								<h2>2013 он</h2>
+							</div>
+						</a>
+					</li>
+					<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/12.jpg')}}); ">
+						<a href="{{asset('assets/urilga/images/12.jpg')}}" class="color-4">
+							<div class="case-studies-summary">
+								<h2>2021 он дархан</h2>
+							</div>
+						</a>
+					</li>
+
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/5.jpg')}}); ">
+							<a href="{{asset('assets/urilga/images/5.jpg')}}" class="color-3">
+								<div class="case-studies-summary">
+									<h2>2021 он наадам</h2>
+								</div>
+							</a>
+						</li>
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/6.jpg')}}); ">
+							<a href="{{asset('assets/urilga/images/6.jpg')}}" class="color-4">
+								<div class="case-studies-summary">
+									<h2>2021 он наадам</h2>
+								</div>
+							</a>
+						</li>
+
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/7.jpg')}}); ">
+							<a href="{{asset('assets/urilga/images/7.jpg')}}" class="color-4">
+								<div class="case-studies-summary">
+									
+									<h2>2012 он хонхны баяр</h2>
+								</div>
+							</a>
+						</li>
+
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/8.jpg')}}); "> 
+							<a href="{{asset('assets/urilga/images/8.jpg')}}" class="color-5">
+								<div class="case-studies-summary">
+									<h2>Бухал</h2>
+								</div>
+							</a>
+						</li>
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/urilga/images/9.jpg')}}); ">
+							<a href="{{asset('assets/urilga/images/9.jpg')}}" class="color-6">
+								<div class="case-studies-summary">
+									
+									<h2>2012 он зугаалга</h2>
+								</div>
+							</a>
+						</li>
+					</ul>		
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="fh5co-couple-story">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
 					<span>Хөтөлбөр</span>
 				
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					<p>Бид цагийн зугаатай, дурсамтай зугаалгай төлөвсөн байгаа. Ирсэнд харамсах зүйл огт байхгүй</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0">
 					<ul class="timeline animate-box">
 						<li class="animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-1.jpg);"></div>
+							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g1.jpg')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
 									<h3 class="timeline-title">Эхний өдрийн уулзалт</h3>
@@ -185,10 +307,10 @@
 							</div>
 						</li>
 						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-2.jpg);"></div>
+							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g2.png')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-									<h3 class="timeline-title">Зугааллага</h3>
+									<h3 class="timeline-title">Зугаалга</h3>
 									<span class="date">7 дугаар сарын 2нд</span>
 								</div>
 								<div class="timeline-body">
@@ -197,10 +319,10 @@
 							</div>
 						</li>
 						<li class="animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-3.jpg);"></div>
+							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g3.jpg')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-									<h3 class="timeline-title">Зугааллага</h3>
+									<h3 class="timeline-title">Зугаалга</h3>
 									<span class="date">7 дугаар сарын 3нд</span>
 								</div>
 								<div class="timeline-body">
@@ -214,7 +336,7 @@
 		</div>
 	</div>
 
-	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/img_bg_4.jpg);">
+	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/img_bg_4.jpg')}});">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row animate-box">
@@ -239,6 +361,7 @@
 								<input type="text" name="phone" required class="form-control" id="email" placeholder="Утасны дугаар">
 							</div>
 						</div>
+					
 						<div class="col-md-4 col-sm-4">
 							<button type="submit" class="btn btn-default btn-block">Би очиноо</button>
 						</div>
