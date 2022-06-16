@@ -182,7 +182,7 @@
 										<span>2022 оны</span>
 										<span>7 дугаар сарын 2,3нд</span>
 									</div>
-									<p>2 хоногийн амралтаар Булган аймгийн үзэсгэлэнт газруудаар аялж гаргасан хөтөлбөрийн дагуу зугаатай цагийг өнгөрөөнө</p>
+									<p>2 хоногийн амралтаар Булган аймгийн Их булаг амралтанд зугаатай цагийг өнгөрөөнө</p>
 								</div>
 							</div>
 						</div>
@@ -322,7 +322,7 @@
 							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g3.jpg')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-									<h3 class="timeline-title">Зугаалга</h3>
+									<h3 class="timeline-title">Амралтийн газар</h3>
 									<span class="date">7 дугаар сарын 2-3нд</span>
 								</div>
 								<div class="timeline-body">
@@ -378,7 +378,8 @@
 				<div class="col-md-12 text-center">
 					<p>
 						<small class="block">&copy; 2022 Энхтайван багштай 2012 оны төгсөлтийн 10н жилд зориулав.</small> 
-						<small class="block">Холбоо барих 99859535,</small>
+						<small class="block">Зардал : 400,000₮</small>
+						<small class="block">Холбоо барих 99722045</small>
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
