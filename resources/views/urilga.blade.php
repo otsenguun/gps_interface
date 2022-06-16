@@ -124,21 +124,21 @@
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
 					
 					<div class="col-md-12 shuleg_div">
-					<h4 class="shuleg">
+					<h5 class="shuleg">
 						Сэтгэлийн жигүүр дэлгэхэд холын газар алсдахгүй <br>
 						Итгэлийн дуу хүрэхэд эгшиг аялгуу тасрахгүй <br>
 						Хуралдсан сэтгэлийн угт олон жил хүлээгдсэн <br>
 						Хүслийн цангааг хөөр баярын нулимсаар тайлая <br>
-						</h4>
-						<h4 class="shuleg2">
+						</h5>
+						<h5 class="shuleg2">
 						Заавал ирээрэй уулзалтандаа  <br>
 						Хэнэггүйтэж харин ирэхгүй бол <br>
 						Хөөрхий андууд минь гомдох л байхдаа <br>
 						Учрах өдрийн тэнгэр цэлмэг байх болтугай <br>
 						Уулзах баярт мөчийг тэсэн ядан хүлээе. <br>
-					</h4>
+					</h5>
 					</div>
-					<h3>Улаанбаатар хот 2022 оны 7-дугаар сарын 2,3,4нд</h3>
+					<h4>Улаанбаатар хот 2022 оны 7-дугаар сарын 1,2,3нд</h4>
 					<p>11-а анги төгссөний 10н жилийн ойн уулзалтад урьж байна.</p>
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 				<div class="display-t ">
 					<div class="display-tc">
 						<div class="col-md-10 col-md-offset-1">
-							<div class="col-md-6 col-sm-6 text-center">
+							<!-- <div class="col-md-6 col-sm-6 text-center">
 								<div class="event-wrap animate-box">
 									<h3>Улаанбаатар дах уулзалт</h3>
 									<div class="event-col">
@@ -164,12 +164,12 @@
 									<div class="event-col">
 										<i class="icon-calendar"></i>
 										<span>2022 оны</span>
-										<span>7 дугаар сарын 2нд</span>
+										<span>7 дугаар сарын 1нд</span>
 									</div>
 									<p>Дурсамж үлдээх уулзалт нь Булган аймагт болох тул ойрхон байгаа найзуудтайгаа холбогдож цугтаа явцгаана</p>
 								</div>
-							</div>
-							<div class="col-md-6 col-sm-6 text-center">
+							</div> -->
+							<div class="col-md-12 col-sm-12 text-center">
 								<div class="event-wrap animate-box">
 									<h3>Зугаалга</h3>
 									<div class="event-col">
@@ -288,13 +288,13 @@
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
 					<span>Хөтөлбөр</span>
 				
-					<p>Бид цагийн зугаатай, дурсамтай зугаалгай төлөвсөн байгаа. Ирсэнд харамсах зүйл огт байхгүй</p>
+					<p>Бид цагийн зугаатай, дурсамжтай зугаалгай төлөвлөсөн байгаа. Ирсэнд харамсах зүйл огт байхгүй</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0">
 					<ul class="timeline animate-box">
-						<li class="animate-box">
+						<!-- <li class="animate-box">
 							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g1.jpg')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
@@ -305,13 +305,13 @@
 									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
 								</div>
 							</div>
-						</li>
+						</li> -->
 						<li class="timeline-inverted animate-box">
 							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g2.png')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-									<h3 class="timeline-title">Зугаалга</h3>
-									<span class="date">7 дугаар сарын 2нд</span>
+									<h3 class="timeline-title">Булган аймаг</h3>
+									<span class="date">7 дугаар сарын 1нд</span>
 								</div>
 								<div class="timeline-body">
 									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
@@ -323,7 +323,7 @@
 							<div class="timeline-panel">
 								<div class="timeline-heading">
 									<h3 class="timeline-title">Зугаалга</h3>
-									<span class="date">7 дугаар сарын 3нд</span>
+									<span class="date">7 дугаар сарын 2-3нд</span>
 								</div>
 								<div class="timeline-body">
 									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
@@ -342,7 +342,7 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Та ирэх боломжтой юу ?</h2>
-					<p>Нэр болон утасны дугаараа заавал бөглөөрэй. Баяраллаа</p>
+					<p>Нэр болон утасны дугаараа заавал бөглөөрэй. Баярлалаа</p>
 				</div>
 			</div>
 			<div class="row animate-box">
