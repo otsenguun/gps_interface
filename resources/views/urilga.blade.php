@@ -69,16 +69,21 @@
 		.shuleg{
 			font-style: italic;
 			text-align: left;
-			font-family: 'icomoon' !important;
+			font-family: 'Sacramento' !important;
 		}
 		.shuleg2{
 			font-style: italic;
 			text-align: left;
-			font-family: 'icomoon' !important;
+			font-family: 'Sacramento' !important;
 		}
 		.shuleg_div{
 			padding-left:13vw;
 			
+		}
+		.head-text{
+			font-size: 5vh !important;
+    font-family: cursive;
+    text-transform: uppercase;
 		}
 
 	</style>
@@ -108,7 +113,8 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>11-A Ten Year Invitation</h1>
+							<!-- <h1></h1> -->
+							<h2 class="head-text"><i>11-А 10-н жилийн уулзалт урилга</i> </h2>
 							<div class="simply-countdown simply-countdown-one"></div>
 							<p><a href="#" class="btn btn-default btn-sm">Save the date</a></p>
 						</div>
@@ -153,9 +159,9 @@
 				<div class="display-t ">
 					<div class="display-tc">
 						<div class="col-md-10 col-md-offset-1">
-							<!-- <div class="col-md-6 col-sm-6 text-center">
+							<div class="col-md-6 col-sm-6 text-center">
 								<div class="event-wrap animate-box">
-									<h3>Улаанбаатар дах уулзалт</h3>
+									<h3>Дархан аймаг</h3>
 									<div class="event-col">
 										<i class="icon-clock"></i>
 										<span>14:00 PM</span>
@@ -166,10 +172,10 @@
 										<span>2022 оны</span>
 										<span>7 дугаар сарын 1нд</span>
 									</div>
-									<p>Дурсамж үлдээх уулзалт нь Булган аймагт болох тул ойрхон байгаа найзуудтайгаа холбогдож цугтаа явцгаана</p>
+									<p>Найзуудаараа хоол идэж дурсамтай зураг үлдээнэ.</p>
 								</div>
-							</div> -->
-							<div class="col-md-12 col-sm-12 text-center">
+							</div>
+							<div class="col-md-6 col-sm-6 text-center">
 								<div class="event-wrap animate-box">
 									<h3>Зугаалга</h3>
 									<div class="event-col">
@@ -288,33 +294,33 @@
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
 					<span>Хөтөлбөр</span>
 				
-					<p>Бид цагийн зугаатай, дурсамжтай зугаалгай төлөвлөсөн байгаа. Ирсэнд харамсах зүйл огт байхгүй</p>
+					<p>Бид цагийг зугаатай, дурсамжтай зугаалга төлөвлөсөн байгаа. Ирсэнд харамсах зүйл огт байхгүй</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0">
 					<ul class="timeline animate-box">
-						<!-- <li class="animate-box">
+						<li class="animate-box">
 							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g1.jpg')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-									<h3 class="timeline-title">Эхний өдрийн уулзалт</h3>
+									<h3 class="timeline-title">Дархан хот</h3>
 									<span class="date">7 дугаар сарын 1нд</span>
 								</div>
 								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+									<p>Найзуудаараа хоол идэж дурсамтай зураг үлдээнэ.</p>
 								</div>
 							</div>
-						</li> -->
+						</li>
 						<li class="timeline-inverted animate-box">
 							<div class="timeline-badge" style="background-image:url({{asset('assets/urilga/images/g2.png')}});"></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
 									<h3 class="timeline-title">Булган аймаг</h3>
-									<span class="date">7 дугаар сарын 1нд</span>
+									<span class="date">7 дугаар сарын 2нд</span>
 								</div>
 								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+									<p>Булган аймгийн Их булаг амралтанд зугаатай цагийг өнгөрөөнө</p>
 								</div>
 							</div>
 						</li>
@@ -323,10 +329,10 @@
 							<div class="timeline-panel">
 								<div class="timeline-heading">
 									<h3 class="timeline-title">Амралтийн газар</h3>
-									<span class="date">7 дугаар сарын 2-3нд</span>
+									<span class="date">7 дугаар сарын 3нд</span>
 								</div>
 								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+									<p>Хаалтын үйл ажиллагаа</p>
 								</div>
 							</div>
 						</li>
