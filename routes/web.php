@@ -22,6 +22,8 @@ Route::get('/11a', 'HomeController@urilga');
 Route::get('/test', 'HomeController@test');
 
 Route::get('/confirmUrilga','HomeController@urilga');
+Route::get('/listUrilga','HomeController@listUrilga');
+
 Route::post('/confirmUrilga','HomeController@urilgaConfirm');
 
 

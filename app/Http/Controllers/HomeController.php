@@ -23,6 +23,12 @@ class HomeController extends Controller
 
         return view('urilga');
     }
+    public function listUrilga()
+    {
+        $list = Event::all();
+        return view('urliga_result',compact("list"));
+    }
+    
 
     public function urilgaConfirm(Request $request)
     {
