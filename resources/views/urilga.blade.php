@@ -431,7 +431,10 @@
 	<script src="{{asset('assets/urilga/js/main.js')}}"></script>
 
 	<script>
-    var d = new Date(new Date().getTime() + 57 * 120 * 120 * 2000);
+
+    var d = new Date(new Date().getTime() + 200 * 120 * 120 * 350);
+	
+	// console.log(d);
 
     // default example
     simplyCountdown('.simply-countdown-one', {

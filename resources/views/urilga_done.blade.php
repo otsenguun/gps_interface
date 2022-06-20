@@ -93,7 +93,7 @@
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>11-A Ten Year Invitation</h1>
 							<div class="simply-countdown simply-countdown-one"></div>
-							<h2>Баяраллаа {{ $event->name }} удахгүй уудзацгаая</h2>
+							<h2>Баяраллаа {{ $event->name }}. удахгүй уудзацгаая</h2>
 						</div>
 					</div>
 				</div>
